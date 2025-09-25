@@ -5,11 +5,11 @@ import App from "./App";
 describe("App", () => {
   it("should render without crashing", () => {
     render(<App />);
-    expect(screen.getByText("PodcastsHub")).toBeInTheDocument();
+    expect(screen.getByText("Podcaster")).toBeInTheDocument();
   });
 
-  it("should show development message", () => {
+  it("should show loading indicator", () => {
     render(<App />);
-    expect(screen.getByText(/En desarrollo/)).toBeInTheDocument();
+    expect(screen.getByLabelText("Cargando...")).toBeInTheDocument();
   });
 });

@@ -1,0 +1,126 @@
+.container {
+  min-height: 100vh;
+  background-color: #f9fafb;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+}
+
+.card {
+  max-width: 28rem;
+  width: 100%;
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow:
+    0 20px 25px -5px rgba(0, 0, 0, 0.1),
+    0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  padding: 2rem;
+  text-align: center;
+}
+
+.iconContainer {
+  margin-bottom: 1.5rem;
+}
+
+.iconWrapper {
+  margin: 0 auto;
+  width: 4rem;
+  height: 4rem;
+  background-color: #fef2f2;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1rem;
+}
+
+.icon {
+  width: 2rem;
+  height: 2rem;
+  color: #ef4444;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #111827;
+  margin-bottom: 0.5rem;
+}
+
+.description {
+  color: #6b7280;
+  margin-bottom: 1.5rem;
+  line-height: 1.6;
+}
+
+.buttonGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.primaryButton {
+  width: 100%;
+  background-color: #3b82f6;
+  color: #ffffff;
+  font-weight: 500;
+  padding: 0.75rem 1rem;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.primaryButton:hover {
+  background-color: #2563eb;
+}
+
+.secondaryButton {
+  width: 100%;
+  background-color: #e5e7eb;
+  color: #111827;
+  font-weight: 500;
+  padding: 0.75rem 1rem;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.secondaryButton:hover {
+  background-color: #d1d5db;
+}
+
+.errorDetails {
+  margin-top: 1.5rem;
+  text-align: left;
+}
+
+.summary {
+  cursor: pointer;
+  font-size: 0.875rem;
+  color: #6b7280;
+  transition: color 0.2s ease;
+}
+
+.summary:hover {
+  color: #111827;
+}
+
+.errorStack {
+  margin-top: 0.5rem;
+  font-size: 0.75rem;
+  font-family: "Monaco", "Menlo", "Consolas", monospace;
+  background-color: #f9fafb;
+  padding: 0.75rem;
+  border-radius: 6px;
+  overflow: auto;
+  max-height: 8rem;
+  white-space: pre;
+}

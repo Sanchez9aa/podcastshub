@@ -2,9 +2,9 @@ import { lazy, Suspense } from "react";
 import { BrowserRouter, Route, Routes } from "react-router";
 import { routes } from "@/router/routes";
 import { Layout } from "@/shared/components/layout/Layout/Layout";
-import { LoadingIndicator } from "@/shared/components/layout/LoadingIndicator/LoadingIndicator";
+import { Spinner } from "@/shared/components/ui/Spinner/Spinner";
+import { ErrorBoundary } from "@/shared/errors/ErrorBoundary";
 
-// Lazy load all pages
 const PodcastListPage = lazy(() =>
   import("@/features/podcast-list/PodcastListPage").then((m) => ({
     default: m.PodcastListPage,
@@ -22,7 +22,11 @@ const EpisodeDetailPage = lazy(() =>
 );
 
 function SuspenseWrapper({ children }: { children: React.ReactNode }) {
-  return <Suspense fallback={<LoadingIndicator />}>{children}</Suspense>;
+  return (
+    <ErrorBoundary>
+      <Suspense fallback={<Spinner />}>{children}</Suspense>
+    </ErrorBoundary>
+  );
 }
 
 export function AppRouter() {
