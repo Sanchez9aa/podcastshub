@@ -1,3 +1,20 @@
+# [1.1.0](https://github.com/Sanchez9aa/podcastshub/compare/v1.0.0...v1.1.0) (2025-09-25)
+
+
+### Bug Fixes
+
+* fix spinner loader on navigation ([7b289b7](https://github.com/Sanchez9aa/podcastshub/commit/7b289b71637dff8660d865f2f2d6bd293d9fc0f0))
+
+
+### Features
+
+* add provider + error boundaries + routing + layout ([f8a1554](https://github.com/Sanchez9aa/podcastshub/commit/f8a15549346b3171030dfded2dc1c9b4b0b13586))
+* added infrastructure, api, tanstack, tanstack cache, testing and fixtures ([a0ce233](https://github.com/Sanchez9aa/podcastshub/commit/a0ce2338fb1282cfd8d50f048aafd3ef0f0facc9))
+* added podcast list + infinite scroll + skeletongs + hooks + some ui components ([c1a3a28](https://github.com/Sanchez9aa/podcastshub/commit/c1a3a282b54339bffc435d6b3b26986716811a82))
+* added posdcast detail + skeleton + queries + components ([d6db9eb](https://github.com/Sanchez9aa/podcastshub/commit/d6db9eb80592e0d7cd5a5478085a9860b920763e))
+* adding entities and use-cases ([55340e1](https://github.com/Sanchez9aa/podcastshub/commit/55340e1ed28c07fcb8a5551162bff2da39597049))
+* improving ui with skeleton as suspense loader ([f9336ac](https://github.com/Sanchez9aa/podcastshub/commit/f9336ac5ad2d8c95011ac03fe26ea986352096c5))
+
 # 1.0.0 (2025-09-25)
 
 
