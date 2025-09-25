@@ -8,8 +8,9 @@ describe("App", () => {
     expect(screen.getByText("Podcaster")).toBeInTheDocument();
   });
 
-  it("should show loading indicator", () => {
+  it("should show loading skeleton", () => {
     render(<App />);
-    expect(screen.getByLabelText("Cargando...")).toBeInTheDocument();
+    // PageSkeleton shows skeleton cards instead of spinner
+    expect(screen.getAllByTestId("skeleton-card")).toHaveLength(12);
   });
 });
