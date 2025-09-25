@@ -1,0 +1,46 @@
+{
+  "name": "podcastshub",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc -b && vite build",
+    "preview": "vite preview",
+    "lint": "biome check src/",
+    "lint:fix": "biome check --write src/",
+    "format": "biome format --write src/",
+    "test": "vitest",
+    "test:ui": "vitest --ui",
+    "test:coverage": "vitest --coverage",
+    "semantic-release": "semantic-release",
+    "prepare": "husky"
+  },
+  "dependencies": {
+    "@tanstack/query-sync-storage-persister": "^5.90.2",
+    "@tanstack/react-query": "^5.90.2",
+    "@tanstack/react-query-persist-client": "^5.90.2",
+    "dompurify": "^3.2.7",
+    "react": "^19.1.1",
+    "react-dom": "^19.1.1",
+    "react-router": "^7.9.2"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "^2.2.4",
+    "@semantic-release/changelog": "^6.0.3",
+    "@semantic-release/git": "^10.0.1",
+    "@testing-library/jest-dom": "^6.8.0",
+    "@testing-library/react": "^16.3.0",
+    "@types/dompurify": "^3.0.5",
+    "@types/react": "^19.1.13",
+    "@types/react-dom": "^19.1.9",
+    "@vitejs/plugin-react": "^5.0.3",
+    "@vitest/ui": "^3.2.4",
+    "husky": "^9.1.7",
+    "jsdom": "^27.0.0",
+    "semantic-release": "^24.2.9",
+    "typescript": "~5.8.3",
+    "vite": "^7.1.7",
+    "vitest": "^3.2.4"
+  }
+}

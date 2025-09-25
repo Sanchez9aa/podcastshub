@@ -1,0 +1,15 @@
+echo "🔍 Running pre-commit hooks..."
+
+echo "📝 Checking code formatting..."
+npm run format
+
+echo "🔧 Running linter..."
+npm run lint
+
+echo "🔍 Type checking..."
+npm run build
+
+echo "🧪 Running tests..."
+npm test
+
+echo "✅ Pre-commit checks passed!"
