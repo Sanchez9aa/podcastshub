@@ -2,7 +2,7 @@ import { lazy, Suspense } from "react";
 import { BrowserRouter, Route, Routes } from "react-router";
 import { routes } from "@/router/routes";
 import { Layout } from "@/shared/components/layout/Layout/Layout";
-import { Spinner } from "@/shared/components/ui/Spinner/Spinner";
+import { PageSkeleton } from "@/shared/components/ui/PageSkeleton/PageSkeleton";
 import { ErrorBoundary } from "@/shared/errors/ErrorBoundary";
 
 const PodcastListPage = lazy(() =>
@@ -24,7 +24,7 @@ const EpisodeDetailPage = lazy(() =>
 function SuspenseWrapper({ children }: { children: React.ReactNode }) {
   return (
     <ErrorBoundary>
-      <Suspense fallback={<Spinner />}>{children}</Suspense>
+      <Suspense fallback={<PageSkeleton />}>{children}</Suspense>
     </ErrorBoundary>
   );
 }

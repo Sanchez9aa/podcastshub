@@ -12,7 +12,8 @@ export function PageSkeleton() {
       {/* Main content grid */}
       <div className={styles.mainContent}>
         {Array.from({ length: 12 }).map((_, index) => (
-          <div key={index} className={styles.card}>
+          // biome-ignore lint/suspicious/noArrayIndexKey: Skeleton cards don't need unique keys
+          <div key={index} className={styles.card} data-testid="skeleton-card">
             <div className={`${styles.skeleton} ${styles.cardImage}`} />
             <div className={`${styles.skeleton} ${styles.cardTitle}`} />
             <div className={`${styles.skeleton} ${styles.cardSubtitle}`} />
