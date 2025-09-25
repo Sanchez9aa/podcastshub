@@ -1,0 +1,5 @@
+export const PAGINATION = {
+  INITIAL_LOAD: 20,
+  LOAD_INCREMENT: 15,
+  INFINITE_SCROLL_THRESHOLD: 200,
+} as const;
