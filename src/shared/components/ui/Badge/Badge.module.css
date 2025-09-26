@@ -14,8 +14,8 @@
 }
 
 .secondary {
-  background-color: #f2f2f7;
-  color: #1c1c1e;
+  background-color: var(--bg-tertiary);
+  color: var(--text-primary);
 }
 
 .small {

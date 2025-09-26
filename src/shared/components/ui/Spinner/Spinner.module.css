@@ -6,8 +6,8 @@
 .circle {
   display: block;
   border-radius: 50%;
-  border: 2px solid #f3f3f3;
-  border-top: 2px solid #007aff;
+  border: 2px solid var(--neutral-200);
+  border-top: 2px solid var(--accent-primary);
   animation: spin 1s linear infinite;
 }
 

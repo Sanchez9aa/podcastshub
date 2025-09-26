@@ -39,7 +39,7 @@
 }
 
 .errorContainer h1 {
-  color: #ff3b30;
+  color: var(--error-light);
   margin-bottom: 12px;
   font-size: 1.5rem;
 }
@@ -50,20 +50,51 @@
   color: var(--text-muted);
 }
 
+/* Tablet and mobile responsive design */
+@media (max-width: 1024px) {
+  .container {
+    padding: var(--spacing-lg) var(--spacing-md);
+  }
+
+  .controlsRow {
+    flex-direction: column;
+    align-items: stretch;
+    gap: var(--spacing-md);
+  }
+}
+
 @media (max-width: 768px) {
   .container {
-    padding: 16px 12px;
-  }
-
-  .title {
-    font-size: 28px;
-  }
-
-  .titleRow {
-    margin-bottom: 20px;
+    padding: var(--spacing-md) var(--spacing-sm);
   }
 
   .controls {
-    margin-bottom: 24px;
+    margin-bottom: var(--spacing-lg);
+    padding: var(--spacing-md);
+  }
+
+  .errorContainer {
+    padding: var(--spacing-xl);
+    margin: var(--spacing-md);
+  }
+}
+
+@media (max-width: 640px) {
+  .container {
+    padding: var(--spacing-sm);
+  }
+
+  .controls {
+    border-radius: var(--radius-md);
+    padding: var(--spacing-sm);
+  }
+
+  .errorContainer {
+    padding: var(--spacing-lg);
+    margin: var(--spacing-sm);
+  }
+
+  .errorContainer h1 {
+    font-size: 1.25rem;
   }
 }

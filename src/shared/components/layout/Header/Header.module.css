@@ -10,7 +10,7 @@
 .container {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 16px 24px;
+  padding: var(--spacing-md) var(--spacing-lg);
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -40,4 +40,30 @@
   color: var(--text-primary);
   margin: 0;
   letter-spacing: -0.025em;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .container {
+    padding: var(--spacing-sm) var(--spacing-md);
+  }
+
+  .title {
+    font-size: 1.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    padding: var(--spacing-sm);
+  }
+
+  .title {
+    font-size: 1.25rem;
+  }
+
+  .spinner {
+    min-width: 32px;
+    height: 32px;
+  }
 }
