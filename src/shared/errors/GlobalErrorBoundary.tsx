@@ -1,6 +1,6 @@
 import type { ErrorInfo, ReactNode } from "react";
 import { Component } from "react";
-import styles from "./GlobalErrorBoundary.module.css";
+import styles from "@/shared/errors/GlobalErrorBoundary.module.css";
 
 interface Props {
   children: ReactNode;

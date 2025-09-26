@@ -132,7 +132,9 @@ describe("ErrorBoundary", () => {
         </ErrorBoundary>,
       );
 
-      expect(screen.getByText("Something went wrong")).toBeInTheDocument();
+      expect(
+        screen.getByRole("heading", { name: "Something went wrong" }),
+      ).toBeInTheDocument();
       expect(
         screen.getByText(/unexpected error occurred/i),
       ).toBeInTheDocument();

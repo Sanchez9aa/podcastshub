@@ -1,12 +1,12 @@
 import type { ErrorInfo, ReactNode } from "react";
 import { Component } from "react";
 import { AllOriginsProxyError } from "@/shared/errors/AllOriginsProxyError";
+import styles from "@/shared/errors/ErrorBoundary.module.css";
 import {
   AuthenticationError,
   NetworkError,
   TimeoutError,
 } from "@/shared/errors/types/api-errors";
-import styles from "./ErrorBoundary.module.css";
 
 interface Props {
   children: ReactNode;
@@ -216,6 +216,26 @@ export class ErrorBoundary extends Component<Props, State> {
           An unexpected error occurred while loading this content. Please try
           again.
         </p>
+
+        {import.meta.env.DEV && (
+          <details className={styles.errorDetails}>
+            <summary className={styles.errorSummary}>
+              Error Details (Dev)
+            </summary>
+            <div className={styles.stackTrace}>
+              <h4>Error Message:</h4>
+              <p>{error.message}</p>
+
+              {error.stack && (
+                <>
+                  <h4>Stack Trace:</h4>
+                  <pre className={styles.stackTraceText}>{error.stack}</pre>
+                </>
+              )}
+            </div>
+          </details>
+        )}
+
         <button
           type="button"
           onClick={this.handleRetry}

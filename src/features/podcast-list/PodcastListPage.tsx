@@ -1,8 +1,8 @@
-import { Badge } from "@/shared/components/ui/Badge";
-import { PodcastGrid } from "./components/PodcastGrid";
-import { SearchFilter } from "./components/SearchFilter";
-import { usePodcastList } from "./hooks/usePodcastList";
-import styles from "./PodcastListPage.module.css";
+import { PodcastGrid } from "@/features/podcast-list/components/PodcastGrid/PodcastGrid";
+import { SearchFilter } from "@/features/podcast-list/components/SearchFilter/SearchFilter";
+import { usePodcastList } from "@/features/podcast-list/hooks/usePodcastList";
+import styles from "@/features/podcast-list/PodcastListPage.module.css";
+import { Badge } from "@/shared/components/ui/Badge/Badge";
 
 export function PodcastListPage() {
   const {

@@ -1,6 +1,6 @@
 .container {
   min-height: 100vh;
-  background-color: #f9fafb;
+  background-color: var(--neutral-100);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -10,7 +10,7 @@
 .card {
   max-width: 28rem;
   width: 100%;
-  background-color: #ffffff;
+  background-color: var(--bg-secondary);
   border-radius: 12px;
   box-shadow:
     0 20px 25px -5px rgba(0, 0, 0, 0.1),
@@ -27,7 +27,7 @@
   margin: 0 auto;
   width: 4rem;
   height: 4rem;
-  background-color: #fef2f2;
+  background-color: var(--error-bg);
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -38,7 +38,7 @@
 .icon {
   width: 2rem;
   height: 2rem;
-  color: #ef4444;
+  color: var(--error-light);
   fill: none;
   stroke: currentColor;
   stroke-width: 2;
@@ -49,12 +49,12 @@
 .title {
   font-size: 1.5rem;
   font-weight: 700;
-  color: #111827;
+  color: var(--neutral-900);
   margin-bottom: 0.5rem;
 }
 
 .description {
-  color: #6b7280;
+  color: var(--neutral-500);
   margin-bottom: 1.5rem;
   line-height: 1.6;
 }
@@ -67,8 +67,8 @@
 
 .primaryButton {
   width: 100%;
-  background-color: #3b82f6;
-  color: #ffffff;
+  background-color: var(--accent-blue);
+  color: var(--bg-secondary);
   font-weight: 500;
   padding: 0.75rem 1rem;
   border-radius: 8px;
@@ -78,13 +78,13 @@
 }
 
 .primaryButton:hover {
-  background-color: #2563eb;
+  background-color: var(--accent-blue-hover);
 }
 
 .secondaryButton {
   width: 100%;
-  background-color: #e5e7eb;
-  color: #111827;
+  background-color: var(--neutral-300);
+  color: var(--neutral-900);
   font-weight: 500;
   padding: 0.75rem 1rem;
   border-radius: 8px;
@@ -94,7 +94,7 @@
 }
 
 .secondaryButton:hover {
-  background-color: #d1d5db;
+  background-color: var(--border-medium);
 }
 
 .errorDetails {
@@ -105,19 +105,19 @@
 .summary {
   cursor: pointer;
   font-size: 0.875rem;
-  color: #6b7280;
+  color: var(--neutral-500);
   transition: color 0.2s ease;
 }
 
 .summary:hover {
-  color: #111827;
+  color: var(--neutral-900);
 }
 
 .errorStack {
   margin-top: 0.5rem;
   font-size: 0.75rem;
   font-family: "Monaco", "Menlo", "Consolas", monospace;
-  background-color: #f9fafb;
+  background-color: var(--neutral-100);
   padding: 0.75rem;
   border-radius: 6px;
   overflow: auto;

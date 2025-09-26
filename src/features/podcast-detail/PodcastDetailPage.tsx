@@ -1,9 +1,9 @@
 import { useParams } from "react-router";
-import { EpisodeList } from "@/features/podcast-detail/components/EpisodeList";
-import { PodcastDetailSkeleton } from "@/features/podcast-detail/components/PodcastDetailSkeleton";
-import { PodcastSidebar } from "@/features/podcast-detail/components/PodcastSidebar";
+import { EpisodeList } from "@/features/podcast-detail/components/EpisodeList/EpisodeList";
+import { PodcastDetailSkeleton } from "@/features/podcast-detail/components/PodcastDetailSkeleton/PodcastDetailSkeleton";
 import { usePodcastDetail } from "@/features/podcast-detail/hooks/usePodcastDetail";
 import styles from "@/features/podcast-detail/PodcastDetailPage.module.css";
+import { PodcastInfo } from "@/shared/components/PodcastInfo/PodcastInfo";
 
 export function PodcastDetailPage() {
   const { podcastId } = useParams<{ podcastId: string }>();
@@ -53,7 +53,7 @@ export function PodcastDetailPage() {
   return (
     <div className={styles.container}>
       <div className={styles.layout}>
-        <PodcastSidebar podcast={podcastDetail} />
+        <PodcastInfo podcast={podcastDetail} />
         <EpisodeList episodes={podcastDetail.episodes} podcastId={podcastId} />
       </div>
     </div>
