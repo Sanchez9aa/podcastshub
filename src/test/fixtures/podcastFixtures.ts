@@ -55,3 +55,19 @@ export const mockPodcastDetail: PodcastDetail = {
   trackCount: mockEpisodes.length,
   episodes: mockEpisodes,
 };
+
+export const mockEpisodeWithAudio: Episode = {
+  id: "episode-1",
+  title: "Test Episode Title",
+  description:
+    "<p>This is a <strong>test</strong> episode description with HTML.</p>",
+  releaseDate: "2024-01-15",
+  duration: 3600,
+  audioUrl: "https://example.com/audio.mp3",
+  podcastId: "1",
+};
+
+export const mockEpisodeNoAudio: Episode = {
+  ...mockEpisodeWithAudio,
+  audioUrl: "",
+};
