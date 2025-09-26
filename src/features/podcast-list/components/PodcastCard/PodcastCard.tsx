@@ -4,15 +4,17 @@ import type { PodcastCardProps } from "@/features/podcast-list/types";
 
 export function PodcastCard({ podcast }: PodcastCardProps) {
   return (
-    <Link to={`/podcast/${podcast.id}`} className={styles.card}>
+    <Link
+      to={`/podcast/${podcast.id}`}
+      className={styles.card}
+      aria-label={`View ${podcast.name} podcast by ${podcast.artist}`}
+    >
       <div className={styles.imageContainer}>
-        <div
+        <img
+          src={podcast.image}
+          alt={`Cover art for ${podcast.name} podcast`}
           className={styles.image}
-          style={{
-            backgroundImage: `url(${podcast.image})`,
-          }}
-          role="img"
-          aria-label={`${podcast.name} cover`}
+          loading="lazy"
         />
       </div>
 

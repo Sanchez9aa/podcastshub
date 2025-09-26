@@ -3,11 +3,14 @@ import type { SpinnerProps } from "@/shared/components/ui/Spinner/types";
 
 export function Spinner({ size = "medium", className }: SpinnerProps) {
   return (
-    <output
+    // biome-ignore lint/a11y/useSemanticElements: role="status" is semantically correct for loading spinners, <output> is for calculation results
+    <div
       className={`${styles.spinner} ${styles[size]} ${className || ""}`}
-      aria-label="Cargando..."
+      role="status"
+      aria-live="polite"
+      aria-label="Loading..."
     >
-      <div className={styles.circle}></div>
-    </output>
+      <div aria-hidden="true" className={styles.circle}></div>
+    </div>
   );
 }

@@ -12,12 +12,17 @@ export function Header() {
   return (
     <header className={styles.header}>
       <div className={styles.container}>
-        <Link to="/" className={styles.logo}>
+        <Link
+          to="/"
+          className={styles.logo}
+          aria-label="Podcaster - Go to home page"
+        >
           <h1 className={styles.title}>Podcaster</h1>
         </Link>
         {isLoading && (
-          <div className={styles.spinner}>
+          <div className={styles.spinner} aria-live="polite">
             <Spinner size="small" />
+            <span className={styles.visuallyHidden}>Loading content...</span>
           </div>
         )}
       </div>

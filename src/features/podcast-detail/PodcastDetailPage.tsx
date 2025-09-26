@@ -16,7 +16,7 @@ export function PodcastDetailPage() {
   if (!podcastId) {
     return (
       <div className={styles.container}>
-        <div className={styles.errorContainer}>
+        <div className={styles.errorContainer} role="alert">
           <p className={styles.errorMessage}>Podcast ID not found</p>
         </div>
       </div>
@@ -30,7 +30,7 @@ export function PodcastDetailPage() {
   if (error) {
     return (
       <div className={styles.container}>
-        <div className={styles.errorContainer}>
+        <div className={styles.errorContainer} role="alert">
           <p className={styles.errorMessage}>
             Error loading podcast:{" "}
             {error instanceof Error ? error.message : "Unknown error"}
@@ -43,7 +43,7 @@ export function PodcastDetailPage() {
   if (!podcastDetail) {
     return (
       <div className={styles.container}>
-        <div className={styles.errorContainer}>
+        <div className={styles.errorContainer} role="alert">
           <p className={styles.errorMessage}>Podcast not found</p>
         </div>
       </div>
@@ -53,8 +53,15 @@ export function PodcastDetailPage() {
   return (
     <div className={styles.container}>
       <div className={styles.layout}>
-        <PodcastInfo podcast={podcastDetail} />
-        <EpisodeList episodes={podcastDetail.episodes} podcastId={podcastId} />
+        <aside aria-label="Podcast information">
+          <PodcastInfo podcast={podcastDetail} />
+        </aside>
+        <main aria-label="Episode list">
+          <EpisodeList
+            episodes={podcastDetail.episodes}
+            podcastId={podcastId}
+          />
+        </main>
       </div>
     </div>
   );

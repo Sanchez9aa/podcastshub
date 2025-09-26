@@ -19,7 +19,7 @@ export function PodcastListPage() {
 
   if (error) {
     return (
-      <div className={styles.errorContainer}>
+      <div className={styles.errorContainer} role="alert">
         <h1>Error loading podcasts</h1>
         <p>Please try again later.</p>
       </div>
@@ -46,7 +46,7 @@ export function PodcastListPage() {
         </div>
       </div>
 
-      <main>
+      <main aria-label="Podcast list">
         <PodcastGrid
           podcasts={podcasts}
           isLoading={isLoading}

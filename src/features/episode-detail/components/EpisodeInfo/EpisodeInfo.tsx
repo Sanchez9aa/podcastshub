@@ -9,7 +9,9 @@ export function EpisodeInfo({ episode }: EpisodeInfoProps) {
 
   return (
     <div className={styles.container}>
-      <h1 className={styles.title}>{episode.title}</h1>
+      <h1 id="episode-title" className={styles.title}>
+        {episode.title}
+      </h1>
 
       <div
         className={styles.description}
@@ -26,15 +28,20 @@ export function EpisodeInfo({ episode }: EpisodeInfoProps) {
               className={styles.audioPlayer}
               preload="none"
               onError={onError}
+              aria-label={`Audio player for episode: ${episode.title}`}
+              aria-describedby="audio-description"
             >
               <source src={episode.audioUrl} type="audio/mpeg" />
               <source src={episode.audioUrl} type="audio/mp4" />
               <source src={episode.audioUrl} type="audio/mp3" />
               Your browser does not support the audio element.
             </audio>
+            <div id="audio-description" className={styles.visuallyHidden}>
+              Use space bar to play or pause, arrow keys to seek, M to mute
+            </div>
             {hasError && (
-              <div className={styles.audioError}>
-                <p>Failed to load audio</p>
+              <div className={styles.audioError} role="alert">
+                <p>Failed to load audio. Please try refreshing the page.</p>
               </div>
             )}
           </>

@@ -18,11 +18,21 @@ export function EpisodeList({ episodes, podcastId }: EpisodeListProps) {
 
       <div className={styles.episodeListContainer}>
         <table className={styles.episodeTable}>
+          <caption className={styles.visuallyHidden}>
+            List of {episodes.length} podcast episodes with title, release date,
+            and duration
+          </caption>
           <thead className={styles.tableHeader}>
             <tr>
-              <th className={styles.tableHeaderCell}>Title</th>
-              <th className={styles.tableHeaderCell}>Date</th>
-              <th className={styles.tableHeaderCell}>Duration</th>
+              <th className={styles.tableHeaderCell} scope="col">
+                Title
+              </th>
+              <th className={styles.tableHeaderCell} scope="col">
+                Date
+              </th>
+              <th className={styles.tableHeaderCell} scope="col">
+                Duration
+              </th>
             </tr>
           </thead>
           <tbody>
@@ -32,14 +42,21 @@ export function EpisodeList({ episodes, podcastId }: EpisodeListProps) {
                   <Link
                     to={`/podcast/${podcastId}/episode/${episode.id}`}
                     className={styles.episodeTitle}
+                    aria-describedby={`episode-${episode.id}-date episode-${episode.id}-duration`}
                   >
                     {episode.title}
                   </Link>
                 </td>
-                <td className={`${styles.episodeCell} ${styles.episodeDate}`}>
-                  {formatDate(episode.releaseDate)}
+                <td
+                  id={`episode-${episode.id}-date`}
+                  className={`${styles.episodeCell} ${styles.episodeDate}`}
+                >
+                  <time dateTime={episode.releaseDate}>
+                    {formatDate(episode.releaseDate)}
+                  </time>
                 </td>
                 <td
+                  id={`episode-${episode.id}-duration`}
                   className={`${styles.episodeCell} ${styles.episodeDuration}`}
                 >
                   {formatDuration(episode.duration)}

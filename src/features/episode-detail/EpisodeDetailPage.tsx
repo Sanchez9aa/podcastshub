@@ -22,21 +22,29 @@ export function EpisodeDetailPage() {
   }
 
   if (error || !podcastDetail) {
-    return <div className={styles.error}>Failed to load episode</div>;
+    return (
+      <div className={styles.error} role="alert">
+        Failed to load episode
+      </div>
+    );
   }
 
   const episode = podcastDetail.episodes.find((ep) => ep.id === episodeId);
 
   if (!episode) {
-    return <div className={styles.error}>Episode not found</div>;
+    return (
+      <div className={styles.error} role="alert">
+        Episode not found
+      </div>
+    );
   }
 
   return (
     <div className={styles.container}>
-      <div className={styles.sidebar}>
+      <aside className={styles.sidebar} aria-label="Podcast information">
         <PodcastInfo podcast={podcastDetail} podcastId={podcastId} />
-      </div>
-      <main className={styles.main}>
+      </aside>
+      <main className={styles.main} aria-labelledby="episode-title">
         <EpisodeInfo episode={episode} />
       </main>
     </div>
