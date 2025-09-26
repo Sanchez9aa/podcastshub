@@ -1,6 +1,6 @@
 import { Link } from "react-router";
 import type { Episode } from "@/core/entities/Episode";
-import styles from "@/features/podcast-detail/components/EpisodeList.module.css";
+import styles from "@/features/podcast-detail/components/EpisodeList/EpisodeList.module.css";
 import { formatDate } from "@/shared/utils/formatDate";
 import { formatDuration } from "@/shared/utils/formatDuration";
 

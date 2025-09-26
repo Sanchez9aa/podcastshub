@@ -1,5 +1,5 @@
-import { PodcastCardSkeleton } from "./PodcastCardSkeleton";
-import styles from "./PodcastGridSkeleton.module.css";
+import { PodcastCardSkeleton } from "@/features/podcast-list/components/PodcastCardSkeleton/PodcastCardSkeleton";
+import styles from "@/features/podcast-list/components/PodcastGridSkeleton/PodcastGridSkeleton.module.css";
 
 interface PodcastGridSkeletonProps {
   count?: number;

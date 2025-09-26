@@ -1,5 +1,5 @@
+import styles from "@/features/podcast-list/components/SearchFilter/SearchFilter.module.css";
 import type { SearchFilterProps } from "@/features/podcast-list/types";
-import styles from "./SearchFilter.module.css";
 
 export function SearchFilter({
   value,

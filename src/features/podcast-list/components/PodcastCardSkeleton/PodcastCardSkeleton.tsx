@@ -1,5 +1,5 @@
+import styles from "@/features/podcast-list/components/PodcastCardSkeleton/PodcastCardSkeleton.module.css";
 import { Skeleton } from "@/shared/components/ui/Skeleton/Skeleton";
-import styles from "./PodcastCardSkeleton.module.css";
 
 export function PodcastCardSkeleton() {
   return (

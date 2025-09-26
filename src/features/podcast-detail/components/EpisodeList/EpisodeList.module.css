@@ -1,11 +1,13 @@
 .mainContent {
   flex: 1;
-  margin-left: 20px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
 }
 
 .episodeCountHeader {
-  background: #fff;
-  border: 1px solid #e5e7eb;
+  background: var(--bg-secondary);
+  border: 1px solid var(--neutral-300);
   border-radius: 8px;
   padding: 15px 20px;
   margin-bottom: 20px;
@@ -15,17 +17,17 @@
 .episodeCount {
   font-size: 18px;
   font-weight: 600;
-  color: #1f2937;
+  color: var(--neutral-800);
   margin: 0;
 }
 
 .episodeListContainer {
-  background: #fff;
-  border: 1px solid #e5e7eb;
+  background: var(--bg-secondary);
+  border: 1px solid var(--neutral-300);
   border-radius: 8px;
   overflow: hidden;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-  max-height: 600px;
+  flex: 1;
   overflow-y: auto;
 }
 
@@ -35,8 +37,8 @@
 }
 
 .tableHeader {
-  background: #f9fafb;
-  border-bottom: 1px solid #e5e7eb;
+  background: var(--neutral-100);
+  border-bottom: 1px solid var(--neutral-300);
 }
 
 .tableHeaderCell {
@@ -44,18 +46,18 @@
   text-align: left;
   font-size: 14px;
   font-weight: 600;
-  color: #374151;
+  color: var(--neutral-700);
   text-transform: uppercase;
   letter-spacing: 0.5px;
 }
 
 .episodeRow {
-  border-bottom: 1px solid #f3f4f6;
+  border-bottom: 1px solid var(--neutral-200);
   transition: background-color 0.2s;
 }
 
 .episodeRow:hover {
-  background: #f8fafc;
+  background: var(--bg-hover);
 }
 
 .episodeRow:last-child {
@@ -69,24 +71,30 @@
 }
 
 .episodeTitle {
-  color: #2563eb;
+  color: var(--accent-blue-hover);
   text-decoration: none;
   font-weight: 500;
-  display: block;
   transition: color 0.2s;
+  /* LINE CLAMP-1 */
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+  line-clamp: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .episodeTitle:hover {
-  color: #1d4ed8;
+  color: var(--accent-blue-dark);
   text-decoration: underline;
 }
 
 .episodeDate {
-  color: #6b7280;
+  color: var(--neutral-500);
 }
 
 .episodeDuration {
-  color: #6b7280;
+  color: var(--neutral-500);
   font-variant-numeric: tabular-nums;
 }
 

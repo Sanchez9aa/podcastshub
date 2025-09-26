@@ -1,6 +1,6 @@
 import { Link } from "react-router";
+import styles from "@/features/podcast-list/components/PodcastCard/PodcastCard.module.css";
 import type { PodcastCardProps } from "@/features/podcast-list/types";
-import styles from "./PodcastCard.module.css";
 
 export function PodcastCard({ podcast }: PodcastCardProps) {
   return (

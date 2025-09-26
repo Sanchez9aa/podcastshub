@@ -1,4 +1,4 @@
-import styles from "@/features/podcast-detail/components/PodcastDetailSkeleton.module.css";
+import styles from "@/features/podcast-detail/components/PodcastDetailSkeleton/PodcastDetailSkeleton.module.css";
 
 export function PodcastDetailSkeleton() {
   return (

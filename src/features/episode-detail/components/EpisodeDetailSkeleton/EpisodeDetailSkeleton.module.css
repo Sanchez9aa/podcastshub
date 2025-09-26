@@ -1,0 +1,159 @@
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  display: flex;
+  gap: 20px;
+  align-items: flex-start;
+}
+
+.sidebar {
+  width: 300px;
+  flex-shrink: 0;
+  background: var(--bg-secondary);
+  border: 1px solid var(--neutral-300);
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.main {
+  flex: 1;
+  background: var(--bg-secondary);
+  border: 1px solid var(--neutral-300);
+  border-radius: 8px;
+  padding: 30px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+/* Base skeleton animation */
+.skeleton {
+  background: linear-gradient(
+    90deg,
+    var(--skeleton-base) 25%,
+    var(--skeleton-highlight) 50%,
+    var(--skeleton-base) 75%
+  );
+  background-size: 200% 100%;
+  animation: loading 1.5s infinite;
+  border-radius: 4px;
+}
+
+@keyframes loading {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+/* Sidebar skeleton elements */
+.skeletonImage {
+  width: 100%;
+  height: 260px;
+  margin-bottom: 20px;
+  border-radius: 8px;
+}
+
+.skeletonTitle {
+  height: 22px;
+  width: 85%;
+  margin-bottom: 8px;
+}
+
+.skeletonArtist {
+  height: 16px;
+  width: 70%;
+  margin-bottom: 16px;
+}
+
+.skeletonDescLabel {
+  height: 14px;
+  width: 40%;
+  margin-bottom: 8px;
+}
+
+.skeletonDesc1 {
+  height: 14px;
+  width: 100%;
+  margin-bottom: 8px;
+}
+
+.skeletonDesc2 {
+  height: 14px;
+  width: 95%;
+  margin-bottom: 8px;
+}
+
+.skeletonDesc3 {
+  height: 14px;
+  width: 80%;
+}
+
+/* Main content skeleton elements */
+.skeletonEpisodeTitle {
+  height: 28px;
+  width: 90%;
+  margin-bottom: 8px;
+}
+
+.skeletonEpisodeTitleShort {
+  height: 28px;
+  width: 60%;
+  margin-bottom: 20px;
+}
+
+.descriptionSkeleton {
+  margin-bottom: 30px;
+}
+
+.skeletonDescLine {
+  height: 18px;
+  width: 100%;
+  margin-bottom: 12px;
+}
+
+.skeletonDescLine:nth-child(2) {
+  width: 95%;
+}
+
+.skeletonDescLine:nth-child(3) {
+  width: 98%;
+}
+
+.skeletonDescLineShort {
+  height: 18px;
+  width: 75%;
+}
+
+.audioSkeleton {
+  border-top: 1px solid var(--neutral-300);
+  padding-top: 20px;
+}
+
+.skeletonAudioPlayer {
+  width: 100%;
+  height: 54px;
+  border-radius: 8px;
+}
+
+@media (max-width: 768px) {
+  .container {
+    flex-direction: column;
+    gap: 20px;
+    padding: 10px;
+  }
+
+  .sidebar {
+    width: 100%;
+  }
+
+  .main {
+    padding: 20px;
+  }
+
+  .skeletonAudioPlayer {
+    height: 48px;
+  }
+}

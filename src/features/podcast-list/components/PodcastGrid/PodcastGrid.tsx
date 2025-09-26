@@ -1,8 +1,8 @@
+import { PodcastCard } from "@/features/podcast-list/components/PodcastCard/PodcastCard";
+import styles from "@/features/podcast-list/components/PodcastGrid/PodcastGrid.module.css";
+import { PodcastGridSkeleton } from "@/features/podcast-list/components/PodcastGridSkeleton/PodcastGridSkeleton";
 import type { PodcastGridProps } from "@/features/podcast-list/types";
 import { useInfiniteScroll } from "@/shared/hooks/useInfiniteScroll";
-import { PodcastCard } from "./PodcastCard";
-import styles from "./PodcastGrid.module.css";
-import { PodcastGridSkeleton } from "./PodcastGridSkeleton";
 
 export function PodcastGrid({
   podcasts,

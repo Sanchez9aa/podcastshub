@@ -1,0 +1,83 @@
+.sidebar {
+  width: 300px;
+  height: 100%;
+  background: var(--bg-secondary);
+  border: 1px solid var(--neutral-300);
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  flex-shrink: 0;
+  overflow-y: auto;
+}
+
+.podcastImage {
+  width: 100%;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
+  transition: transform 0.2s ease;
+}
+
+.podcastImage:hover {
+  transform: translateY(-2px);
+}
+
+.podcastTitle {
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--neutral-800);
+  margin: 0 0 8px 0;
+  line-height: 1.3;
+  /* LINE CLAMP-1 */
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+  line-clamp: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.podcastArtist {
+  font-size: 14px;
+  color: var(--neutral-500);
+  margin: 0 0 16px 0;
+  font-style: italic;
+}
+
+.descriptionLabel {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--neutral-700);
+  margin: 0 0 8px 0;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.podcastDescription {
+  font-size: 14px;
+  color: var(--neutral-600);
+  line-height: 1.5;
+  margin: 0;
+}
+
+.titleLink,
+.artistLink {
+  text-decoration: none;
+  color: inherit;
+  transition: color 0.2s ease;
+}
+
+.titleLink:hover .podcastTitle {
+  color: var(--accent-blue);
+}
+
+.artistLink:hover .podcastArtist {
+  color: var(--accent-blue);
+}
+
+@media (max-width: 768px) {
+  .sidebar {
+    width: 100%;
+    margin-bottom: 20px;
+  }
+}
