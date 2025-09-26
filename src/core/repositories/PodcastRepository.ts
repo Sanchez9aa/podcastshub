@@ -1,5 +1,5 @@
-import type { Podcast } from "../entities/Podcast";
-import type { PodcastDetail } from "../entities/PodcastDetail";
+import type { Podcast } from "@/core/entities/Podcast";
+import type { PodcastDetail } from "@/core/entities/PodcastDetail";
 
 export interface PodcastRepository {
   getPodcasts(): Promise<Podcast[]>;

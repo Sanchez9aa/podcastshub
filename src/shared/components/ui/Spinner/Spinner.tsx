@@ -1,5 +1,5 @@
-import styles from "./Spinner.module.css";
-import type { SpinnerProps } from "./types";
+import styles from "@/shared/components/ui/Spinner/Spinner.module.css";
+import type { SpinnerProps } from "@/shared/components/ui/Spinner/types";
 
 export function Spinner({ size = "medium", className }: SpinnerProps) {
   return (

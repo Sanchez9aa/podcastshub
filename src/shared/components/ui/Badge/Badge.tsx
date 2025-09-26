@@ -1,5 +1,5 @@
-import styles from "./Badge.module.css";
-import type { BadgeProps } from "./types";
+import styles from "@/shared/components/ui/Badge/Badge.module.css";
+import type { BadgeProps } from "@/shared/components/ui/Badge/types";
 
 export function Badge({
   children,

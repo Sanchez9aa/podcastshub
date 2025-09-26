@@ -4,10 +4,34 @@ import type { PodcastRepository } from "@/core/repositories/PodcastRepository";
 import { fetchWithProxy } from "@/infrastructure/api/allOriginsProxy";
 import type {
   iTunesEntry,
+  iTunesEpisodeInfo,
   iTunesLookupResponse,
+  iTunesPodcastInfo,
   iTunesResponse,
 } from "@/infrastructure/api/types/iTunesTypes";
 import { API_ENDPOINTS } from "@/shared/constants/api";
+
+const isPodcastInfo = (item: unknown): item is iTunesPodcastInfo => {
+  return (
+    typeof item === "object" &&
+    item !== null &&
+    "wrapperType" in item &&
+    "kind" in item &&
+    item.wrapperType === "track" &&
+    item.kind === "podcast"
+  );
+};
+
+const isEpisodeInfo = (item: unknown): item is iTunesEpisodeInfo => {
+  return (
+    typeof item === "object" &&
+    item !== null &&
+    "wrapperType" in item &&
+    "kind" in item &&
+    item.wrapperType === "podcastEpisode" &&
+    item.kind === "podcast-episode"
+  );
+};
 
 const getPodcasts = async (): Promise<Podcast[]> => {
   try {
@@ -37,26 +61,32 @@ const getPodcastDetail = async (podcastId: string): Promise<PodcastDetail> => {
       throw new Error(`Podcast with ID ${podcastId} not found`);
     }
 
-    const podcastInfo = response.results[0];
-    const episodes = response.results.slice(1).map((episode) => ({
-      id: episode.trackId?.toString() || episode.collectionId?.toString() || "",
-      title: episode.trackName || "",
-      description: episode.description || "",
-      audioUrl: episode.previewUrl || "",
-      duration: episode.trackTimeMillis
-        ? Math.floor(episode.trackTimeMillis / 1000)
-        : 0,
-      releaseDate: episode.releaseDate ? episode.releaseDate.split("T")[0] : "",
-      podcastId,
-    }));
+    const podcastInfo = response.results.find(isPodcastInfo);
+    if (!podcastInfo) {
+      throw new Error(`Podcast info not found for ID ${podcastId}`);
+    }
+
+    const episodes = response.results
+      .filter(isEpisodeInfo)
+      .map((episode: iTunesEpisodeInfo) => ({
+        id: episode.trackId.toString(),
+        title: episode.trackName,
+        description: episode.description,
+        audioUrl: episode.previewUrl || episode.episodeUrl || "",
+        duration: episode.trackTimeMillis
+          ? Math.floor(episode.trackTimeMillis / 1000)
+          : 0,
+        releaseDate: episode.releaseDate.split("T")[0],
+        podcastId,
+      }));
 
     return {
-      id: podcastInfo.collectionId?.toString() || podcastId,
-      name: podcastInfo.collectionName || "",
-      artist: podcastInfo.artistName || "",
-      summary: podcastInfo.description || "",
-      image: podcastInfo.artworkUrl600 || "",
-      trackCount: episodes.length,
+      id: podcastInfo.collectionId.toString(),
+      name: podcastInfo.collectionName,
+      artist: podcastInfo.artistName,
+      summary: podcastInfo.collectionName, // Using collectionName as summary since description is not available
+      image: podcastInfo.artworkUrl600,
+      trackCount: podcastInfo.trackCount,
       episodes,
     };
   } catch (error) {

@@ -1,4 +1,4 @@
-import styles from "./Skeleton.module.css";
+import styles from "@/shared/components/ui/Skeleton/Skeleton.module.css";
 
 interface SkeletonProps {
   width?: string;

@@ -1,7 +1,8 @@
 import type {
   iTunesEntry,
+  iTunesEpisodeInfo,
   iTunesLookupResponse,
-  iTunesLookupResult,
+  iTunesPodcastInfo,
   iTunesResponse,
 } from "@/infrastructure/api/types/iTunesTypes";
 
@@ -82,66 +83,155 @@ const mockiTunesApiResponse: iTunesResponse = {
   },
 };
 
+// Mock iTunes Podcast Info
+const mockiTunesPodcastInfo: iTunesPodcastInfo = {
+  wrapperType: "track",
+  kind: "podcast",
+  collectionId: 1574007634,
+  trackId: 1574007634,
+  artistName: "Joe Rogan",
+  collectionName: "The Joe Rogan Experience",
+  trackName: "The Joe Rogan Experience",
+  collectionCensoredName: "The Joe Rogan Experience",
+  trackCensoredName: "The Joe Rogan Experience",
+  collectionViewUrl:
+    "https://podcasts.apple.com/us/podcast/the-joe-rogan-experience/id1574007634",
+  feedUrl: "https://feeds.example.com/jre.xml",
+  trackViewUrl:
+    "https://podcasts.apple.com/us/podcast/the-joe-rogan-experience/id1574007634",
+  artworkUrl30: "https://example.com/artwork30.jpg",
+  artworkUrl60: "https://example.com/artwork60.jpg",
+  artworkUrl100: "https://example.com/artwork100.jpg",
+  artworkUrl600: "https://example.com/artwork600.jpg",
+  collectionPrice: 0,
+  trackPrice: 0,
+  collectionHdPrice: 0,
+  releaseDate: "2024-01-15T10:00:00Z",
+  collectionExplicitness: "notExplicit",
+  trackExplicitness: "notExplicit",
+  trackCount: 3,
+  country: "USA",
+  currency: "USD",
+  primaryGenreName: "Comedy",
+  contentAdvisoryRating: "Clean",
+  genreIds: ["1303", "1304"],
+  genres: ["Comedy", "Society & Culture"],
+};
+
+// Mock iTunes Episode Info
+const mockiTunesEpisodeInfo1: iTunesEpisodeInfo = {
+  artworkUrl160: "https://example.com/artwork160.jpg",
+  artworkUrl600: "https://example.com/artwork600.jpg",
+  artworkUrl60: "https://example.com/artwork60.jpg",
+  episodeFileExtension: "mp3",
+  episodeContentType: "audio",
+  feedUrl: "https://feeds.example.com/jre.xml",
+  closedCaptioning: "none",
+  collectionId: 1574007634,
+  collectionName: "The Joe Rogan Experience",
+  artistIds: [284341002],
+  genres: [
+    { name: "Comedy", id: "1303" },
+    { name: "Society & Culture", id: "1304" },
+  ],
+  episodeGuid: "jre-2057-elon-musk",
+  trackName: "JRE #2057 - Elon Musk",
+  trackId: 2057819234,
+  shortDescription: "Elon Musk is a business magnate, investor, and engineer.",
+  releaseDate: "2024-01-15T10:00:00Z",
+  episodeUrl: "https://example.com/episode1.mp3",
+  kind: "podcast-episode",
+  wrapperType: "podcastEpisode",
+  description: "Elon Musk is a business magnate, investor, and engineer.",
+  country: "USA",
+  collectionViewUrl:
+    "https://podcasts.apple.com/us/podcast/the-joe-rogan-experience/id1574007634",
+  trackViewUrl:
+    "https://podcasts.apple.com/us/podcast/jre-2057-elon-musk/id2057819234",
+  contentAdvisoryRating: "Clean",
+  previewUrl: "https://example.com/episode1.mp3",
+  trackTimeMillis: 10800000, // 3 hours in milliseconds
+};
+
+const mockiTunesEpisodeInfo2: iTunesEpisodeInfo = {
+  artworkUrl160: "https://example.com/artwork160.jpg",
+  artworkUrl600: "https://example.com/artwork600.jpg",
+  artworkUrl60: "https://example.com/artwork60.jpg",
+  episodeFileExtension: "mp3",
+  episodeContentType: "audio",
+  feedUrl: "https://feeds.example.com/jre.xml",
+  closedCaptioning: "none",
+  collectionId: 1574007634,
+  collectionName: "The Joe Rogan Experience",
+  artistIds: [284341002],
+  genres: [
+    { name: "Comedy", id: "1303" },
+    { name: "Society & Culture", id: "1304" },
+  ],
+  episodeGuid: "jre-2056-duncan-trussell",
+  trackName: "JRE #2056 - Duncan Trussell",
+  trackId: 2056789123,
+  shortDescription:
+    "Duncan Trussell is a stand-up comic, writer, actor, host of the Duncan Trussell Family Hour podcast.",
+  releaseDate: "2024-01-12T15:30:00Z",
+  episodeUrl: "https://example.com/episode2.mp3",
+  kind: "podcast-episode",
+  wrapperType: "podcastEpisode",
+  description:
+    "Duncan Trussell is a stand-up comic, writer, actor, host of the Duncan Trussell Family Hour podcast.",
+  country: "USA",
+  collectionViewUrl:
+    "https://podcasts.apple.com/us/podcast/the-joe-rogan-experience/id1574007634",
+  trackViewUrl:
+    "https://podcasts.apple.com/us/podcast/jre-2056-duncan-trussell/id2056789123",
+  contentAdvisoryRating: "Clean",
+  previewUrl: "https://example.com/episode2.mp3",
+  trackTimeMillis: 7200000, // 2 hours in milliseconds
+};
+
+const mockiTunesEpisodeInfo3: iTunesEpisodeInfo = {
+  artworkUrl160: "https://example.com/artwork160.jpg",
+  artworkUrl600: "https://example.com/artwork600.jpg",
+  artworkUrl60: "https://example.com/artwork60.jpg",
+  episodeFileExtension: "mp3",
+  episodeContentType: "audio",
+  feedUrl: "https://feeds.example.com/jre.xml",
+  closedCaptioning: "none",
+  collectionId: 1574007634,
+  collectionName: "The Joe Rogan Experience",
+  artistIds: [284341002],
+  genres: [
+    { name: "Comedy", id: "1303" },
+    { name: "Society & Culture", id: "1304" },
+  ],
+  episodeGuid: "jre-2055-tim-dillon",
+  trackName: "JRE #2055 - Tim Dillon",
+  trackId: 2055678912,
+  shortDescription:
+    "Tim Dillon is a stand-up comic, actor, and host of The Tim Dillon Show podcast.",
+  releaseDate: "2024-01-10T12:00:00Z",
+  episodeUrl: "https://example.com/episode3.mp3",
+  kind: "podcast-episode",
+  wrapperType: "podcastEpisode",
+  description:
+    "Tim Dillon is a stand-up comic, actor, and host of The Tim Dillon Show podcast.",
+  country: "USA",
+  collectionViewUrl:
+    "https://podcasts.apple.com/us/podcast/the-joe-rogan-experience/id1574007634",
+  trackViewUrl:
+    "https://podcasts.apple.com/us/podcast/jre-2055-tim-dillon/id2055678912",
+  contentAdvisoryRating: "Clean",
+  previewUrl: "https://example.com/episode3.mp3",
+  trackTimeMillis: 5400000, // 1.5 hours in milliseconds
+};
+
 // Mock iTunes Lookup Response for podcast detail
 const mockiTunesLookupResponse: iTunesLookupResponse = {
   results: [
-    // First result is always the podcast info
-    {
-      trackId: 0,
-      collectionId: 1574007634,
-      trackName: "",
-      artistName: "Joe Rogan",
-      collectionName: "The Joe Rogan Experience",
-      description:
-        "The official podcast of comedian Joe Rogan. Follow The Joe Rogan Experience on Spotify.",
-      releaseDate: "2024-01-15T10:00:00Z",
-      trackTimeMillis: 0,
-      previewUrl: undefined,
-      artworkUrl600: "https://example.com/artwork600.jpg",
-      kind: "podcast",
-    },
-    // Subsequent results are episodes
-    {
-      trackId: 2057819234,
-      collectionId: 1574007634,
-      trackName: "JRE #2057 - Elon Musk",
-      artistName: "Joe Rogan",
-      collectionName: "The Joe Rogan Experience",
-      description: "Elon Musk is a business magnate, investor, and engineer.",
-      releaseDate: "2024-01-15T10:00:00Z",
-      trackTimeMillis: 10800000, // 3 hours in milliseconds
-      previewUrl: "https://example.com/episode1.mp3",
-      artworkUrl600: "https://example.com/artwork600.jpg",
-      kind: "podcast-episode",
-    },
-    {
-      trackId: 2056789123,
-      collectionId: 1574007634,
-      trackName: "JRE #2056 - Duncan Trussell",
-      artistName: "Joe Rogan",
-      collectionName: "The Joe Rogan Experience",
-      description:
-        "Duncan Trussell is a stand-up comic, writer, actor, host of the Duncan Trussell Family Hour podcast.",
-      releaseDate: "2024-01-12T15:30:00Z",
-      trackTimeMillis: 7200000, // 2 hours in milliseconds
-      previewUrl: "https://example.com/episode2.mp3",
-      artworkUrl600: "https://example.com/artwork600.jpg",
-      kind: "podcast-episode",
-    },
-    {
-      trackId: 2055678912,
-      collectionId: 1574007634,
-      trackName: "JRE #2055 - Tim Dillon",
-      artistName: "Joe Rogan",
-      collectionName: "The Joe Rogan Experience",
-      description:
-        "Tim Dillon is a stand-up comic, actor, and host of The Tim Dillon Show podcast.",
-      releaseDate: "2024-01-10T12:00:00Z",
-      trackTimeMillis: 5400000, // 1.5 hours in milliseconds
-      previewUrl: "https://example.com/episode3.mp3",
-      artworkUrl600: "https://example.com/artwork600.jpg",
-      kind: "podcast-episode",
-    },
+    mockiTunesPodcastInfo,
+    mockiTunesEpisodeInfo1,
+    mockiTunesEpisodeInfo2,
+    mockiTunesEpisodeInfo3,
   ],
 };
 
@@ -150,77 +240,18 @@ const mockEmptyiTunesLookupResponse: iTunesLookupResponse = {
   results: [],
 };
 
-// Mock iTunes Lookup Response with missing fields
-const mockiTunesLookupResponseMissingFields: iTunesLookupResponse = {
-  results: [
-    {
-      trackId: 0,
-      collectionId: 999,
-      trackName: "",
-      artistName: "",
-      collectionName: "",
-      releaseDate: "",
-      trackTimeMillis: 0,
-      kind: "podcast",
-    },
-    {
-      trackId: 1001,
-      collectionId: 999,
-      trackName: "",
-      artistName: "",
-      collectionName: "",
-      releaseDate: "",
-      trackTimeMillis: 0,
-      kind: "podcast-episode",
-    },
-  ],
-};
-
 // Mock iTunes Lookup Response with no episodes (only podcast info)
 const mockiTunesLookupResponseNoEpisodes: iTunesLookupResponse = {
   results: [
     {
-      trackId: 0,
+      ...mockiTunesPodcastInfo,
       collectionId: 1234567890,
-      trackName: "",
+      trackId: 1234567890,
       artistName: "New Podcaster",
       collectionName: "Brand New Podcast",
-      description: "A brand new podcast with no episodes yet",
-      releaseDate: "2024-01-01T00:00:00Z",
-      trackTimeMillis: 0,
-      artworkUrl600: "https://example.com/new-artwork.jpg",
-      kind: "podcast",
+      trackName: "Brand New Podcast",
+      trackCount: 0,
     },
-  ],
-};
-
-// Mock iTunes Lookup Response with episode missing trackId (fallback to collectionId)
-const mockiTunesLookupResponseMissingTrackId: iTunesLookupResponse = {
-  results: [
-    {
-      trackId: 0,
-      collectionId: 5555555555,
-      trackName: "",
-      artistName: "Test Artist",
-      collectionName: "Test Podcast",
-      description: "Test podcast description",
-      releaseDate: "2024-01-01T00:00:00Z",
-      trackTimeMillis: 0,
-      artworkUrl600: "https://example.com/test-artwork.jpg",
-      kind: "podcast",
-    },
-    {
-      // trackId is missing, should fallback to collectionId
-      collectionId: 6666666666,
-      trackName: "Episode without trackId",
-      artistName: "Test Artist",
-      collectionName: "Test Podcast",
-      description: "This episode has no trackId",
-      releaseDate: "2024-01-01T10:00:00Z",
-      trackTimeMillis: 1800000, // 30 minutes
-      previewUrl: "https://example.com/no-trackid-episode.mp3",
-      kind: "podcast-episode",
-    } as iTunesLookupResult, // Type assertion to simulate missing trackId
   ],
 };
 
@@ -268,8 +299,7 @@ const expectedMappedPodcastDetail = {
   id: "1574007634",
   name: "The Joe Rogan Experience",
   artist: "Joe Rogan",
-  summary:
-    "The official podcast of comedian Joe Rogan. Follow The Joe Rogan Experience on Spotify.",
+  summary: "The Joe Rogan Experience",
   image: "https://example.com/artwork600.jpg",
   trackCount: 3,
   episodes: [
@@ -305,13 +335,81 @@ const expectedMappedPodcastDetail = {
   ],
 };
 
+// Mock iTunes Lookup Response with missing fields
+const mockiTunesLookupResponseMissingFields: iTunesLookupResponse = {
+  results: [
+    {
+      wrapperType: "track",
+      kind: "podcast",
+      collectionId: 999,
+      trackId: 999,
+      artistName: "",
+      collectionName: "",
+      trackName: "",
+      collectionCensoredName: "",
+      trackCensoredName: "",
+      collectionViewUrl: "",
+      feedUrl: "",
+      trackViewUrl: "",
+      artworkUrl30: "",
+      artworkUrl60: "",
+      artworkUrl100: "",
+      artworkUrl600: "",
+      collectionPrice: 0,
+      trackPrice: 0,
+      collectionHdPrice: 0,
+      releaseDate: "",
+      collectionExplicitness: "",
+      trackExplicitness: "",
+      trackCount: 1,
+      country: "",
+      currency: "",
+      primaryGenreName: "",
+      contentAdvisoryRating: "",
+      genreIds: [],
+      genres: [],
+    },
+    {
+      artworkUrl160: "",
+      artworkUrl600: "",
+      artworkUrl60: "",
+      episodeFileExtension: "mp3",
+      episodeContentType: "audio",
+      feedUrl: "",
+      closedCaptioning: "",
+      collectionId: 999,
+      collectionName: "",
+      artistIds: [],
+      genres: [],
+      episodeGuid: "",
+      trackName: "",
+      trackId: 1001,
+      shortDescription: "",
+      releaseDate: "",
+      episodeUrl: "",
+      kind: "podcast-episode",
+      wrapperType: "podcastEpisode",
+      description: "",
+      country: "",
+      collectionViewUrl: "",
+      trackViewUrl: "",
+      contentAdvisoryRating: "",
+      previewUrl: "",
+      trackTimeMillis: 0,
+    },
+  ],
+};
+
 export {
   mockiTunesApiResponse,
   mockiTunesLookupResponse,
   mockEmptyiTunesLookupResponse,
-  mockiTunesLookupResponseMissingFields,
   mockiTunesLookupResponseNoEpisodes,
-  mockiTunesLookupResponseMissingTrackId,
+  mockiTunesLookupResponseMissingFields,
+  mockiTunesPodcastInfo,
+  mockiTunesEpisodeInfo1,
+  mockiTunesEpisodeInfo2,
+  mockiTunesEpisodeInfo3,
   mockiTunesEntry,
   expectedMappedPodcasts,
   expectedMappedPodcastDetail,

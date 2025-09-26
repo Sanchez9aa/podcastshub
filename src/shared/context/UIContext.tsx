@@ -1,5 +1,5 @@
 import { createContext, useContext, useState } from "react";
-import type { UIContextValue, UIProviderProps } from "./types";
+import type { UIContextValue, UIProviderProps } from "@/shared/context/types";
 
 const UIContext = createContext<UIContextValue | undefined>(undefined);
 

@@ -1,4 +1,4 @@
-import type { Podcast } from "../entities/Podcast";
+import type { Podcast } from "@/core/entities/Podcast";
 
 export function filterPodcasts(
   podcasts: Podcast[],

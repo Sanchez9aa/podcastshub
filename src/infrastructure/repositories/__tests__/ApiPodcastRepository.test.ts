@@ -9,7 +9,6 @@ import {
   mockiTunesApiResponse,
   mockiTunesLookupResponse,
   mockiTunesLookupResponseMissingFields,
-  mockiTunesLookupResponseMissingTrackId,
   mockiTunesLookupResponseNoEpisodes,
 } from "@/test/fixtures/iTunesApiFixtures";
 
@@ -124,21 +123,6 @@ describe("ApiPodcastRepository", () => {
           },
         ],
       });
-    });
-
-    it("should use fallback IDs when trackId is missing", async () => {
-      // Arrange
-      const podcastId = "5555555555";
-      mockFetchWithProxy.mockResolvedValue(
-        mockiTunesLookupResponseMissingTrackId,
-      );
-
-      // Act
-      const result = await apiPodcastRepository.getPodcastDetail(podcastId);
-
-      // Assert
-      expect(result.episodes[0].id).toBe("6666666666"); // Should use collectionId as fallback
-      expect(result.episodes[0].title).toBe("Episode without trackId");
     });
 
     it("should throw error when no results are found", async () => {
