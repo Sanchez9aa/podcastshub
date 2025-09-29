@@ -3,11 +3,11 @@ import { formatDuration } from "../formatDuration";
 
 describe("formatDuration", () => {
   it("should return '--:--' for null input", () => {
-    expect(formatDuration(null as any)).toBe("--:--");
+    expect(formatDuration(null as unknown as number)).toBe("--:--");
   });
 
   it("should return '--:--' for undefined input", () => {
-    expect(formatDuration(undefined as any)).toBe("--:--");
+    expect(formatDuration(undefined as unknown as number)).toBe("--:--");
   });
 
   it("should return '--:--' for NaN input", () => {
@@ -17,7 +17,7 @@ describe("formatDuration", () => {
   it("should log warning for invalid duration values", () => {
     const consoleSpy = vi.spyOn(console, "warn").mockImplementation(() => {});
 
-    formatDuration(null as any);
+    formatDuration(null as unknown as number);
     expect(consoleSpy).toHaveBeenCalledWith(
       "formatDuration: Invalid duration value received:",
       null,
@@ -121,6 +121,6 @@ describe("formatDuration", () => {
     const duration = 3725; // 1:02:05
     expect(formatDuration(duration)).toBe("01:02:05");
     expect(formatDuration(Math.floor(duration))).toBe("01:02:05");
-    expect(formatDuration(parseInt(duration.toString()))).toBe("01:02:05");
+    expect(formatDuration(parseInt(duration.toString(), 10))).toBe("01:02:05");
   });
 });

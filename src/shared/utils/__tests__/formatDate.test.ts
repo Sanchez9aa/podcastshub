@@ -7,11 +7,11 @@ describe("formatDate", () => {
   });
 
   it("should return empty string for null input", () => {
-    expect(formatDate(null as any)).toBe("");
+    expect(formatDate(null as unknown as string)).toBe("");
   });
 
   it("should return empty string for undefined input", () => {
-    expect(formatDate(undefined as any)).toBe("");
+    expect(formatDate(undefined as unknown as string)).toBe("");
   });
 
   it("should format valid ISO date string", () => {

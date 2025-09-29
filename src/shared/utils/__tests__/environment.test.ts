@@ -49,8 +49,8 @@ describe("Environment Agnostic Utility Tests", () => {
 
     it("should handle empty inputs consistently", () => {
       expect(formatDate("")).toBe("");
-      expect(formatDate(null as any)).toBe("");
-      expect(formatDate(undefined as any)).toBe("");
+      expect(formatDate(null as unknown as string)).toBe("");
+      expect(formatDate(undefined as unknown as string)).toBe("");
     });
   });
 
@@ -73,7 +73,7 @@ describe("Environment Agnostic Utility Tests", () => {
       const invalidInputs = [null, undefined, NaN];
 
       invalidInputs.forEach((input) => {
-        expect(formatDuration(input as any)).toBe("--:--");
+        expect(formatDuration(input as unknown as number)).toBe("--:--");
       });
     });
 
@@ -114,8 +114,8 @@ describe("Environment Agnostic Utility Tests", () => {
 
     it("should handle empty inputs consistently", () => {
       expect(sanitizeHtml("")).toBe("");
-      expect(sanitizeHtml(null as any)).toBe("");
-      expect(sanitizeHtml(undefined as any)).toBe("");
+      expect(sanitizeHtml(null as unknown as string)).toBe("");
+      expect(sanitizeHtml(undefined as unknown as string)).toBe("");
     });
 
     it("should handle plain text consistently", () => {
