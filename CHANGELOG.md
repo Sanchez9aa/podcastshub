@@ -1,3 +1,10 @@
+# [1.8.0](https://github.com/Sanchez9aa/podcastshub/compare/v1.7.0...v1.8.0) (2025-09-29)
+
+
+### Features
+
+* integrate Codecov coverage reporting and update documentation ([eea753c](https://github.com/Sanchez9aa/podcastshub/commit/eea753c93844bf6e28e17f01497834d9d837c2ed))
+
 # [1.7.0](https://github.com/Sanchez9aa/podcastshub/compare/v1.6.0...v1.7.0) (2025-09-29)
 
 
