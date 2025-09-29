@@ -1,3 +1,10 @@
+# [1.6.0](https://github.com/Sanchez9aa/podcastshub/compare/v1.5.1...v1.6.0) (2025-09-29)
+
+
+### Features
+
+* integrate GitHub Pages deployment with semantic release workflow ([f4ef064](https://github.com/Sanchez9aa/podcastshub/commit/f4ef064d89ab7f612d6b3fdacc025403559a5508))
+
 ## [1.5.1](https://github.com/Sanchez9aa/podcastshub/compare/v1.5.0...v1.5.1) (2025-09-29)
 
 
