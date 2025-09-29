@@ -312,6 +312,10 @@ npm run preview
 }
 ```
 
+## 🚀 Gestión de Releases
+
+Este proyecto utiliza semantic-release para versionado automático. Los releases se generan automáticamente en CI/CD cuando los commits siguen el formato conventional commits.
+
 ## 🚀 Mejoras Implementadas
 
 ### Funcionalidades Core ✅
