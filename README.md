@@ -170,13 +170,64 @@ export const apiPodcastRepository: PodcastRepository = {
 - ✅ **Performance**: Sin overhead de librerías externas
 - ✅ **Design System**: Variables CSS para consistencia
 
-**Componentes creados**:
-- `Card` - Podcast cards con hover effects
-- `Spinner` - Loading indicators (3 tamaños)
-- `Badge` - Contadores con variants
-- `Skeleton` - Loading placeholders
-- `Button` - Botones base con estados
-- `Input` - Campos de formulario
+### Estrategia de Componentización
+
+**Principios aplicados**:
+- ✅ **Single Responsibility** - Cada componente una única responsabilidad
+- ✅ **Reusabilidad** - Componentes reutilizables entre features
+- ✅ **Composición** - Componentes compuestos por otros más simples
+- ✅ **Separation of Concerns** - UI separada de lógica de negocio
+
+**Componentes creados y justificación**:
+
+#### **🎨 UI Base Components (`src/shared/components/ui/`)**
+- **`Card`** - Contenedor visual reutilizable (podcast cards, info panels)
+  - *Justificación*: Patrón visual común, evita duplicar estilos
+- **`Spinner`** - Loading indicators (3 tamaños: sm, md, lg)
+  - *Justificación*: Estados de carga consistentes, UX coherente
+- **`Badge`** - Contadores con variants (count de episodios, filtros)
+  - *Justificación*: Elementos informativos reutilizables con estados
+- **`Skeleton`** - Loading placeholders durante fetch
+  - *Justificación*: Perceived performance, UX mejorada en cargas
+- **`Button`** - Botones base con estados (hover, focus, disabled)
+  - *Justificación*: Consistencia de interacciones, accesibilidad
+- **`Input`** - Campos de formulario (filtro de búsqueda)
+  - *Justificación*: Validación y estilos consistentes
+
+#### **🏗️ Layout Components (`src/shared/components/layout/`)**
+- **`Layout`** - Estructura base de páginas
+  - *Justificación*: Header consistente, navigation shared
+- **`Header`** - Cabecera con título, loading indicator
+  - *Justificación*: UI común en todas las vistas, estado global
+
+#### **🧩 Feature Components (`src/features/*/components/`)**
+- **`PodcastCard`** - Card específica para podcasts
+  - *Justificación*: Lógica específica (navegación, datos podcast)
+- **`PodcastGrid`** - Grid responsive de podcasts
+  - *Justificación*: Layout específico, responsive behavior
+- **`SearchFilter`** - Filtro de búsqueda inmediata
+  - *Justificación*: Lógica de filtrado acoplada al estado
+- **`EpisodeList`** - Lista tabular de episodios
+  - *Justificación*: Presentación específica de datos episodios
+- **`EpisodeInfo`** - Información detallada de episodio
+  - *Justificación*: Layout complejo, HTML sanitization
+- **`SanitizedDescription`** - Wrapper para HTML seguro
+  - *Justificación*: Seguridad XSS, lógica de sanitización
+
+#### **📦 Shared Business Components (`src/shared/components/`)**
+- **`PodcastInfo`** - Panel lateral reutilizable
+  - *Justificación*: Compartido entre detalle podcast/episodio
+- **`ErrorBoundary`** - Manejo de errores React
+  - *Justificación*: Error handling, recuperación graceful
+
+### Beneficios de esta Arquitectura Modular
+
+1. **Reusabilidad**: `PodcastInfo` usado en 2 vistas diferentes
+2. **Mantenibilidad**: Cambios en `Spinner` afectan toda la app
+3. **Testabilidad**: Cada componente testeado independientemente
+4. **Escalabilidad**: Nuevas features reutilizan componentes base
+5. **Consistencia**: Design system aplicado automáticamente
+6. **Separación de responsabilidades**: UI, layout, business logic separados
 
 ## 💾 Estrategia de Caché
 
@@ -396,6 +447,82 @@ src/
 3. **Integration Tests**: Flujos completos de usuario
 4. **Hook Tests**: Custom hooks y state management
 5. **API Tests**: Mocking y data fetching
+
+### Ejemplos de Tests
+
+#### **🧪 Component Test - PodcastCard**
+```typescript
+// src/features/podcast-list/components/PodcastCard/PodcastCard.test.tsx
+it('should navigate to podcast detail on click', async () => {
+  const podcast = mockPodcast;
+  render(<PodcastCard podcast={podcast} />);
+
+  const card = screen.getByRole('link');
+  await user.click(card);
+
+  expect(mockNavigate).toHaveBeenCalledWith(`/podcast/${podcast.id}`);
+});
+```
+
+#### **🔗 Custom Hook Test - usePodcastList**
+```typescript
+// src/features/podcast-list/hooks/__tests__/usePodcastList.test.ts
+it('should filter podcasts by title and artist', () => {
+  const { result } = renderHook(() => usePodcastList(mockPodcasts));
+
+  act(() => {
+    result.current.setFilter('NPR');
+  });
+
+  expect(result.current.filteredPodcasts).toHaveLength(2);
+  expect(result.current.filteredPodcasts[0].artist).toContain('NPR');
+});
+```
+
+#### **🏗️ Integration Test - PodcastDetailPage**
+```typescript
+// src/features/podcast-detail/PodcastDetailPage.test.tsx
+it('should load and display podcast with episodes', async () => {
+  render(<PodcastDetailPage />, { wrapper: TestWrapper });
+
+  await waitFor(() => {
+    expect(screen.getByText('Song Exploder')).toBeInTheDocument();
+    expect(screen.getByText('Episodes: 66')).toBeInTheDocument();
+  });
+
+  const episodeLinks = screen.getAllByRole('link', { name: /episode/i });
+  expect(episodeLinks).toHaveLength(20);
+});
+```
+
+#### **⚡ API Test - ApiPodcastRepository**
+```typescript
+// src/infrastructure/repositories/__tests__/ApiPodcastRepository.test.ts
+it('should fetch podcasts with proper error handling', async () => {
+  const mockError = new Error('Network error');
+  vi.mocked(fetchWithProxy).mockRejectedValueOnce(mockError);
+
+  await expect(repository.getPodcasts()).rejects.toThrow('Network error');
+  expect(console.error).toHaveBeenCalledWith(
+    'Error fetching podcasts:', mockError
+  );
+});
+```
+
+#### **🛠️ Utility Test - formatDuration**
+```typescript
+// src/shared/utils/__tests__/formatDuration.test.ts
+describe('formatDuration edge cases', () => {
+  it('should handle zero duration', () => {
+    expect(formatDuration('0')).toBe('0:00');
+  });
+
+  it('should handle invalid input gracefully', () => {
+    expect(formatDuration('invalid')).toBe('0:00');
+    expect(formatDuration('')).toBe('0:00');
+  });
+});
+```
 
 ## 🚀 Gestión de Releases
 
