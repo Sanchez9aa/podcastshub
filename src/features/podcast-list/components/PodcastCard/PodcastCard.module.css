@@ -3,7 +3,7 @@
   text-decoration: none;
   color: inherit;
   background: var(--bg-secondary);
-  border-radius: 12px;
+  border-radius: var(--radius-lg);
   box-shadow: 0 1px 3px var(--shadow-light);
   transition:
     transform 0.2s ease,
@@ -44,12 +44,12 @@
 }
 
 .content {
-  padding: 20px;
+  padding: var(--spacing-lg);
   background-color: var(--bg-secondary);
 }
 
 .title {
-  font-size: 1rem;
+  font-size: var(--spacing-md);
   font-weight: 600;
   margin: 0 0 8px 0;
   line-height: 1.4;

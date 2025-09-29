@@ -1,29 +1,29 @@
 .container {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 20px;
+  padding: var(--spacing-lg);
 }
 
 .header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 30px;
-  padding: 20px 0;
+  margin-bottom: var(--spacing-xl);
+  padding: var(--spacing-lg) 0;
 }
 
 .mainContent {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-  gap: 20px;
+  gap: var(--spacing-lg);
   margin-bottom: 40px;
 }
 
 .card {
   background: var(--bg-secondary);
   border: 1px solid var(--neutral-300);
-  border-radius: 8px;
-  padding: 16px;
+  border-radius: var(--spacing-sm);
+  padding: var(--spacing-md);
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
   display: flex;
   flex-direction: column;
@@ -33,7 +33,7 @@
 .cardImage {
   width: 100%;
   height: 180px;
-  border-radius: 8px;
+  border-radius: var(--spacing-sm);
 }
 
 .cardTitle {
@@ -56,7 +56,7 @@
   );
   background-size: 200% 100%;
   animation: loading 1.5s infinite;
-  border-radius: 4px;
+  border-radius: var(--spacing-xs);
 }
 
 @keyframes loading {
@@ -70,20 +70,20 @@
 
 .headerTitle {
   width: 200px;
-  height: 32px;
+  height: var(--spacing-xl);
 }
 
 .headerBadge {
   width: 60px;
-  height: 24px;
-  border-radius: 12px;
+  height: var(--spacing-lg);
+  border-radius: var(--radius-lg);
 }
 
 .searchBox {
   width: 300px;
   height: 40px;
-  border-radius: 8px;
-  margin-bottom: 20px;
+  border-radius: var(--spacing-sm);
+  margin-bottom: var(--spacing-lg);
 }
 
 @media (max-width: 768px) {
@@ -93,13 +93,13 @@
 
   .header {
     flex-direction: column;
-    gap: 16px;
+    gap: var(--spacing-md);
     align-items: stretch;
   }
 
   .mainContent {
     grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-    gap: 16px;
+    gap: var(--spacing-md);
   }
 
   .searchBox {

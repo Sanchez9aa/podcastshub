@@ -1,26 +1,26 @@
 .container {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 32px 24px;
+  padding: var(--spacing-xl) 24px;
   min-height: 100vh;
   background-color: var(--bg-primary);
 }
 
 .controls {
   margin: 0 0 32px 0;
-  padding: 16px 24px;
+  padding: var(--spacing-md) 24px;
   background-color: var(--bg-primary);
   backdrop-filter: blur(10px);
   border-bottom: 1px solid var(--border-light);
   box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
-  border-radius: 12px;
+  border-radius: var(--radius-lg);
 }
 
 .controlsRow {
   display: flex;
   align-items: center;
   justify-content: flex-end;
-  gap: 16px;
+  gap: var(--spacing-md);
 }
 
 .errorContainer {
@@ -32,21 +32,21 @@
   text-align: center;
   color: var(--text-secondary);
   background-color: var(--bg-secondary);
-  border-radius: 16px;
-  padding: 48px;
-  margin: 24px;
+  border-radius: var(--spacing-md);
+  padding: var(--spacing-2xl);
+  margin: var(--spacing-lg);
   box-shadow: 0 1px 3px var(--shadow-light);
 }
 
 .errorContainer h1 {
   color: var(--error-light);
   margin-bottom: 12px;
-  font-size: 1.5rem;
+  font-size: var(--spacing-lg);
 }
 
 .errorContainer p {
   margin: 0;
-  font-size: 1rem;
+  font-size: var(--spacing-md);
   color: var(--text-muted);
 }
 

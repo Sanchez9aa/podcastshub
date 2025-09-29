@@ -3,7 +3,7 @@
   align-items: center;
   justify-content: center;
   font-weight: 600;
-  border-radius: 12px;
+  border-radius: var(--radius-lg);
   white-space: nowrap;
 }
 
@@ -19,7 +19,7 @@
 }
 
 .small {
-  padding: 4px 8px;
+  padding: var(--spacing-xs) 8px;
   font-size: 12px;
 }
 

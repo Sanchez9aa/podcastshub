@@ -1,10 +1,10 @@
 .container {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 20px;
+  padding: var(--spacing-lg);
   height: calc(100dvh - 70px);
   display: flex;
-  gap: 20px;
+  gap: var(--spacing-lg);
 }
 
 .sidebar {
@@ -16,8 +16,8 @@
   height: 100%;
   background: var(--bg-secondary);
   border: 1px solid var(--neutral-300);
-  border-radius: 8px;
-  padding: 30px;
+  border-radius: var(--spacing-sm);
+  padding: var(--spacing-xl);
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
   overflow-y: auto;
 }
@@ -27,7 +27,7 @@
   justify-content: center;
   align-items: center;
   min-height: 400px;
-  font-size: 16px;
+  font-size: var(--spacing-md);
   color: var(--neutral-500);
 }
 
@@ -36,16 +36,16 @@
   padding: 40px 20px;
   background: var(--bg-secondary);
   border: 1px solid var(--error-border);
-  border-radius: 8px;
-  margin: 20px 0;
-  color: #dc2626;
-  font-size: 16px;
+  border-radius: var(--spacing-sm);
+  margin: var(--spacing-lg) 0;
+  color: var(--error-text);
+  font-size: var(--spacing-md);
 }
 
 @media (max-width: 1024px) {
   .container {
     flex-direction: column;
-    gap: 20px;
+    gap: var(--spacing-lg);
     padding: 10px;
     height: auto;
     min-height: calc(100dvh - 70px);
@@ -57,7 +57,7 @@
   }
 
   .main {
-    padding: 20px;
+    padding: var(--spacing-lg);
     height: auto;
     min-height: 300px;
   }

@@ -29,7 +29,7 @@
 
 .errorMessage {
   color: var(--error-text);
-  font-size: 1rem;
+  font-size: var(--spacing-md);
   margin: 0;
 }
 

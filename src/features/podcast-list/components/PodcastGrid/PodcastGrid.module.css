@@ -22,8 +22,8 @@
   padding: 80px 32px;
   color: var(--text-secondary);
   background-color: var(--bg-secondary);
-  border-radius: 16px;
-  margin: 24px;
+  border-radius: var(--spacing-md);
+  margin: var(--spacing-lg);
 }
 
 .spinner {
@@ -33,7 +33,7 @@
   border-top: 3px solid var(--accent-primary);
   border-radius: 50%;
   animation: spin 1s linear infinite;
-  margin-bottom: 16px;
+  margin-bottom: var(--spacing-md);
 }
 
 @keyframes spin {
@@ -53,8 +53,8 @@
   color: var(--text-secondary);
   text-align: center;
   background-color: var(--bg-secondary);
-  border-radius: 16px;
-  margin: 24px;
+  border-radius: var(--spacing-md);
+  margin: var(--spacing-lg);
 }
 
 .emptyContainer p {
@@ -107,7 +107,7 @@
 }
 
 .loadingTrigger {
-  padding: 24px 0;
+  padding: var(--spacing-lg) 0;
 }
 
 .loadingMore {
@@ -116,15 +116,15 @@
   align-items: center;
   justify-content: center;
   color: var(--text-secondary);
-  padding: 24px;
+  padding: var(--spacing-lg);
   background-color: var(--bg-secondary);
-  border-radius: 12px;
-  margin-top: 16px;
+  border-radius: var(--radius-lg);
+  margin-top: var(--spacing-md);
 }
 
 .loadingMore .spinner {
-  width: 32px;
-  height: 32px;
+  width: var(--spacing-xl);
+  height: var(--spacing-xl);
   border-width: 2px;
   margin-bottom: 12px;
   border-color: var(--border-light);

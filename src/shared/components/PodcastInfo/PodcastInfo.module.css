@@ -3,8 +3,8 @@
   height: 100%;
   background: var(--bg-secondary);
   border: 1px solid var(--neutral-300);
-  border-radius: 8px;
-  padding: 20px;
+  border-radius: var(--spacing-sm);
+  padding: var(--spacing-lg);
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
   flex-shrink: 0;
   overflow-y: auto;
@@ -12,9 +12,9 @@
 
 .podcastImage {
   width: 100%;
-  border-radius: 8px;
+  border-radius: var(--spacing-sm);
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  margin-bottom: 20px;
+  margin-bottom: var(--spacing-lg);
   transition: transform 0.2s ease;
 }
 
@@ -90,7 +90,7 @@
   }
 
   .podcastTitle {
-    font-size: 16px;
+    font-size: var(--spacing-md);
     text-align: center;
   }
 

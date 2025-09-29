@@ -1,7 +1,7 @@
 .card {
   background: white;
-  border-radius: 12px;
-  padding: 16px;
+  border-radius: var(--radius-lg);
+  padding: var(--spacing-md);
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   display: flex;
   flex-direction: column;
@@ -17,11 +17,11 @@
 .content {
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: var(--spacing-sm);
 }
 
 .title {
-  margin-bottom: 4px;
+  margin-bottom: var(--spacing-xs);
 }
 
 .artist {

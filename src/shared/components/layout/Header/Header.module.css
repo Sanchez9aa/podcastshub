@@ -49,7 +49,7 @@
 .logo:focus {
   outline: 2px solid var(--accent-primary);
   outline-offset: 2px;
-  border-radius: 4px;
+  border-radius: var(--spacing-xs);
 }
 
 .title {
@@ -67,7 +67,7 @@
   }
 
   .title {
-    font-size: 1.5rem;
+    font-size: var(--spacing-lg);
   }
 }
 
@@ -81,7 +81,7 @@
   }
 
   .spinner {
-    min-width: 32px;
-    height: 32px;
+    min-width: var(--spacing-xl);
+    height: var(--spacing-xl);
   }
 }

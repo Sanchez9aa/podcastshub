@@ -20,9 +20,9 @@
 .episodeCountHeader {
   background: var(--bg-secondary);
   border: 1px solid var(--neutral-300);
-  border-radius: 8px;
+  border-radius: var(--spacing-sm);
   padding: 15px 20px;
-  margin-bottom: 20px;
+  margin-bottom: var(--spacing-lg);
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
 }
 
@@ -36,7 +36,7 @@
 .episodeListContainer {
   background: var(--bg-secondary);
   border: 1px solid var(--neutral-300);
-  border-radius: 8px;
+  border-radius: var(--spacing-sm);
   overflow: hidden;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
   flex: 1;
@@ -122,12 +122,12 @@
   }
 
   .tableHeaderCell {
-    padding: 8px 12px;
+    padding: var(--spacing-sm) 12px;
     font-size: 12px;
   }
 
   .episodeCell {
-    padding: 8px 12px;
+    padding: var(--spacing-sm) 12px;
     font-size: 13px;
   }
 

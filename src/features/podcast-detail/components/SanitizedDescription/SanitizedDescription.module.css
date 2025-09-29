@@ -4,7 +4,7 @@
   line-height: 1.5;
   margin: 0;
   overflow-y: auto;
-  padding-right: 8px;
+  padding-right: var(--spacing-sm);
   scrollbar-width: thin;
   scrollbar-color: var(--border-medium) var(--neutral-100);
 }
@@ -24,5 +24,5 @@
 }
 
 .content::-webkit-scrollbar-thumb:hover {
-  background: #9ca3af;
+  background: var(--neutral-400);
 }
