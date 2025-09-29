@@ -1,5 +1,7 @@
 # 🎧 PodcastsHub
 
+[![Coverage](https://codecov.io/gh/Sanchez9aa/podcastshub/branch/main/graph/badge.svg)](https://codecov.io/gh/Sanchez9aa/podcastshub)
+
 > **Prueba Técnica Frontend INDITEX** - Nivel Tech Lead
 
 Mini-aplicación SPA para escuchar podcasts musicales desarrollada siguiendo principios enterprise-ready y patrones de arquitectura escalables.
@@ -30,9 +32,14 @@ Mini-aplicación SPA para escuchar podcasts musicales desarrollada siguiendo pri
 - **Context API** - UI state
 
 ### Calidad de Código
-- **Biome** - Linter y formatter 
+- **Biome** - Linter y formatter
 - **Vitest** + React Testing Library - Testing framework
 - **Husky** - Pre-commit hooks
+
+### CI/CD y Deployment
+- **GitHub Actions** - Automatización CI/CD
+- **GitHub Pages** - Hosting y deployment automático
+- **Semantic Release** - Versionado automático
 
 ### Estilos
 - **CSS desde cero**
@@ -49,14 +56,12 @@ La aplicación sigue una **Clean Architecture ligera** adaptada a React, con sep
 src/
 ├── core/                           # 🔵 DOMAIN + APPLICATION LAYER
 │   ├── entities/                   # Entidades del dominio
-│   │   ├── Podcast.ts
 │   │   ├── Episode.ts
+│   │   ├── Podcast.ts
 │   │   └── PodcastDetail.ts
 │   ├── repositories/               # Interfaces (contratos)
 │   │   └── PodcastRepository.ts
 │   └── use-cases/                  # Casos de uso
-│       ├── getPodcasts.ts
-│       ├── getPodcastDetail.ts
 │       └── filterPodcasts.ts
 │
 ├── infrastructure/                 # 🟡 INFRASTRUCTURE LAYER
@@ -67,40 +72,78 @@ src/
 │   ├── cache/
 │   │   └── StoragePersister.ts     # Persistencia localStorage
 │   ├── query/
-│   │   ├── queryClient.ts          # TanStack Query config
-│   │   └── podcastQueries.ts       # Queries reutilizables
+│   │   ├── podcastQueries.ts       # Queries TanStack Query
+│   │   └── queryClient.ts          # Configuración cliente
 │   └── repositories/
 │       └── ApiPodcastRepository.ts # Implementación repositorio
 │
 ├── features/                       # 🟢 PRESENTATION LAYER
-│   ├── podcast-list/
+│   ├── episode-detail/
 │   │   ├── components/
+│   │   │   ├── EpisodeDetailSkeleton/
+│   │   │   └── EpisodeInfo/
 │   │   ├── hooks/
-│   │   └── PodcastListPage.tsx
+│   │   │   └── useAudioMetadata.ts
+│   │   ├── types/
+│   │   └── EpisodeDetailPage.tsx
 │   ├── podcast-detail/
 │   │   ├── components/
+│   │   │   ├── EpisodeList/
+│   │   │   ├── PodcastDetailSkeleton/
+│   │   │   └── SanitizedDescription/
 │   │   ├── hooks/
+│   │   │   └── usePodcastDetail.ts
 │   │   └── PodcastDetailPage.tsx
-│   └── episode-detail/
+│   └── podcast-list/
 │       ├── components/
+│       │   ├── PodcastCard/
+│       │   ├── PodcastCardSkeleton/
+│       │   ├── PodcastGrid/
+│       │   ├── PodcastGridSkeleton/
+│       │   └── SearchFilter/
 │       ├── hooks/
-│       └── EpisodeDetailPage.tsx
+│       │   └── usePodcastList.ts
+│       ├── types/
+│       └── PodcastListPage.tsx
 │
-└── shared/                         # 🔴 SHARED LAYER
-    ├── components/
-    │   ├── ui/                     # Componentes base
-    │   └── layout/                 # Layout components
-    ├── context/
-    │   └── UIContext.tsx           # Context API (UI state)
-    ├── constants/
-    │   ├── api.ts                  # URLs y configuración
-    │   └── pagination.ts
-    ├── hooks/
-    │   └── useNavigationLoading.ts
-    └── utils/
-        ├── formatDate.ts
-        ├── formatDuration.ts
-        └── sanitizeHtml.ts
+├── router/                         # 🌐 ROUTING LAYER
+│   ├── AppRouter.tsx               # Configuración principal
+│   └── routes.ts                   # Definición rutas
+│
+├── shared/                         # 🔴 SHARED LAYER
+│   ├── components/
+│   │   ├── layout/
+│   │   │   ├── Header/
+│   │   │   └── Layout/
+│   │   ├── ui/
+│   │   │   ├── Badge/
+│   │   │   ├── PageSkeleton/
+│   │   │   ├── Skeleton/
+│   │   │   └── Spinner/
+│   │   └── PodcastInfo/           # Componente compartido
+│   ├── constants/
+│   │   ├── api.ts
+│   │   └── pagination.ts
+│   ├── context/
+│   │   ├── types.ts
+│   │   └── UIContext.tsx
+│   ├── errors/                     # Manejo de errores
+│   │   ├── types/
+│   │   ├── AllOriginsProxyError.ts
+│   │   ├── ErrorBoundary.tsx
+│   │   └── GlobalErrorBoundary.tsx
+│   ├── hooks/
+│   │   ├── useInfiniteScroll.ts
+│   │   └── useNavigationLoading.ts
+│   └── utils/
+│       ├── environment.ts          # Configuración entornos
+│       ├── formatDate.ts
+│       ├── formatDuration.ts
+│       └── sanitizeHtml.ts
+│
+└── test/                          # 🧪 TESTING UTILITIES
+    ├── fixtures/                  # Datos de prueba
+    └── utils/                     # Utilidades testing
 ```
 
 ### 🎯 Principios Arquitectónicos Aplicados
@@ -221,6 +264,27 @@ export const apiPodcastRepository: PodcastRepository = {
 - **`ErrorBoundary`** - Manejo de errores React
   - *Justificación*: Error handling, recuperación graceful
 
+### Nuevas Funcionalidades Arquitectónicas
+
+#### **🌐 Router Layer (`src/router/`)**
+- **`AppRouter.tsx`** - Configuración principal de React Router
+  - *Justificación*: Basename dinámico para desarrollo/producción
+  - *Funcionalidad*: Configuración automática para GitHub Pages
+- **`routes.ts`** - Definición centralizada de rutas
+  - *Justificación*: Single source of truth para navegación
+
+#### **🔧 Environment Management (`src/shared/utils/environment.ts`)**
+- **`getBasePath()`** - Base path dinámico para routing y assets
+- **`getEnvironment()`** - Detección de entorno (development/production/test)
+- **`isProduction()/isDevelopment()/isTest()`** - Flags de entorno
+  - *Justificación*: Deployment automático, configuraciones específicas por entorno
+
+#### **🚨 Advanced Error Handling (`src/shared/errors/`)**
+- **`AllOriginsProxyError`** - Errores específicos del proxy CORS
+- **`ErrorBoundary`** - Manejo de errores a nivel componente
+- **`GlobalErrorBoundary`** - Manejo de errores globales con recovery
+  - *Justificación*: UX resiliente, debugging mejorado
+
 ### Beneficios de esta Arquitectura Modular
 
 1. **Reusabilidad**: `PodcastInfo` usado en 2 vistas diferentes
@@ -229,6 +293,8 @@ export const apiPodcastRepository: PodcastRepository = {
 4. **Escalabilidad**: Nuevas features reutilizan componentes base
 5. **Consistencia**: Design system aplicado automáticamente
 6. **Separación de responsabilidades**: UI, layout, business logic separados
+7. **Deployment automático**: Configuración por entornos centralizada
+8. **Error handling robusto**: Manejo graceful de fallos
 
 ## 💾 Estrategia de Caché
 
@@ -339,8 +405,14 @@ queryClient.invalidateQueries({ queryKey: ['podcasts'] });
 
 ### Requisitos Previos
 
-- **Node.js** 18.0.0 o superior
-- **npm** 8.0.0 o superior
+- **Node.js** 18.0.0 o superior *(desarrollado con v22.20.0)*
+- **npm** 8.0.0 o superior *(desarrollado con v11.6.1)*
+
+```bash
+# Verificar versiones instaladas
+node --version  # >= 18.0.0
+npm --version   # >= 8.0.0
+```
 
 ### Instalación
 
@@ -389,15 +461,21 @@ npm run preview
 
 ```json
 {
-  "dev": "vite",                    // Servidor desarrollo
-  "build": "tsc && vite build",     // Build producción
-  "preview": "vite preview",        // Preview build
-  "lint": "biome check src/",       // Verificar linting
-  "lint:fix": "biome check --write src/", // Auto-fix linting
+  "dev": "vite",                           // Servidor desarrollo
+  "build": "tsc -b && vite build",         // Build producción
+  "build:prod": "NODE_ENV=production npm run build", // Build con env producción
+  "preview": "vite preview",               // Preview build local
+  "preview:prod": "vite build && vite preview --base=/podcastshub/", // Preview producción
+  "lint": "biome check src/",              // Verificar linting
+  "lint:fix": "biome check --write src/",  // Auto-fix linting
   "format": "biome format --write src/",   // Formatear código
-  "test": "vitest",                 // Run tests
-  "test:ui": "vitest --ui",         // Tests con UI
-  "test:coverage": "vitest --coverage" // Coverage report
+  "test": "vitest",                        // Run tests
+  "test:ui": "vitest --ui",                // Tests con UI
+  "test:coverage": "vitest --coverage",    // Coverage report
+  "check:types": "tsc --noEmit",           // Verificación de tipos
+  "deploy:verify": "npm run lint && npm run check:types && npm run test && npm run build:prod", // Verificación completa
+  "deploy:github-pages": "npm run deploy:verify && echo 'Ready for GitHub Pages deployment'", // Deploy verificación
+  "semantic-release": "semantic-release"   // Release automático
 }
 ```
 
@@ -422,12 +500,6 @@ npm run test:ui
 # Reporte de cobertura
 npm run test:coverage
 ```
-
-### Estadísticas Actuales
-
-- ✅ **427 tests pasando** al 100%
-- ✅ **39 archivos de test** cubriendo toda la aplicación
-- ✅ **Tests unitarios** y de **integración**
 
 ### Estructura de Tests
 
