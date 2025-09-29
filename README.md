@@ -14,6 +14,7 @@ Mini-aplicación SPA para escuchar podcasts musicales desarrollada siguiendo pri
 - [Testing](#-testing)
 - [Instalación y Ejecución](#-instalación-y-ejecución)
 - [Scripts Disponibles](#-scripts-disponibles)
+- [Gestión de Releases](#-gestión-de-releases)
 - [Mejoras Implementadas](#-mejoras-implementadas)
 
 ## 🚀 Stack Tecnológico
@@ -230,6 +231,42 @@ queryClient.invalidateQueries({ queryKey: ['podcasts'] });
 
 **Variables CSS implementadas**:
 
+```css
+/* Colors - Primary System */
+--bg-primary: #fafafa;        /* Background principal */
+--bg-secondary: #ffffff;      /* Cards y contenedores */
+--text-primary: #1a1a1a;      /* Texto principal */
+--text-secondary: #666666;    /* Texto secundario */
+
+/* Accent Colors */
+--accent-primary: #007aff;    /* Links y botones primarios */
+--accent-hover: #0056cc;      /* Hover states */
+
+/* Status Colors */
+--error-bg: #fef2f2;         /* Error backgrounds */
+--error-text: #dc2626;       /* Error text */
+--warning-bg: #fef3cd;       /* Warning backgrounds */
+--success-bg: #ecfdf5;       /* Success backgrounds */
+
+/* Spacing System */
+--spacing-xs: 0.25rem;       /* 4px */
+--spacing-sm: 0.5rem;        /* 8px */
+--spacing-md: 1rem;          /* 16px */
+--spacing-lg: 1.5rem;        /* 24px */
+--spacing-xl: 2rem;          /* 32px */
+
+/* Border Radius */
+--radius-sm: 4px;            /* Pequeño */
+--radius-md: 8px;            /* Medio */
+--radius-lg: 12px;           /* Grande */
+--radius-xl: 16px;           /* Extra grande */
+
+/* Shadows */
+--shadow-light: rgba(0, 0, 0, 0.1);   /* Sombra suave */
+--shadow-medium: rgba(0, 0, 0, 0.15);  /* Sombra media */
+--shadow-focus: rgba(0, 122, 255, 0.1); /* Focus states */
+```
+
 ### Responsive Design
 
 **Breakpoints definidos**:
@@ -257,7 +294,7 @@ queryClient.invalidateQueries({ queryKey: ['podcasts'] });
 
 ```bash
 # Clonar repositorio
-git clone <repository-url>
+git clone https://github.com/Sanchez9aa/podcastshub.git
 cd podcastshub
 
 # Instalar dependencias
@@ -311,6 +348,54 @@ npm run preview
   "test:coverage": "vitest --coverage" // Coverage report
 }
 ```
+
+## 🧪 Testing
+
+### Framework de Testing
+
+- **Vitest** - Test runner moderno y rápido
+- **React Testing Library** - Testing utilities para React
+- **jsdom** - DOM environment para tests
+- **@testing-library/jest-dom** - Matchers personalizados
+
+### Cobertura de Tests
+
+```bash
+# Ejecutar todos los tests
+npm run test
+
+# Tests con interfaz visual
+npm run test:ui
+
+# Reporte de cobertura
+npm run test:coverage
+```
+
+### Estadísticas Actuales
+
+- ✅ **427 tests pasando** al 100%
+- ✅ **39 archivos de test** cubriendo toda la aplicación
+- ✅ **Tests unitarios** y de **integración**
+
+### Estructura de Tests
+
+```
+src/
+├── **/__tests__/         # Tests unitarios
+├── **/*.test.tsx         # Component tests
+└── test/
+    ├── setup.ts          # Configuración global
+    ├── fixtures/         # Datos de prueba
+    └── utils/            # Utilidades para testing
+```
+
+### Tipos de Tests Implementados
+
+1. **Unit Tests**: Lógica de negocio y utilidades
+2. **Component Tests**: Renderizado y comportamiento UI
+3. **Integration Tests**: Flujos completos de usuario
+4. **Hook Tests**: Custom hooks y state management
+5. **API Tests**: Mocking y data fetching
 
 ## 🚀 Gestión de Releases
 
