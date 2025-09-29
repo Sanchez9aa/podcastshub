@@ -1,17 +1,22 @@
-name: Release
+name: Release and Deploy
 
 on:
   push:
     branches: [main, master]
 
+permissions:
+  contents: write
+  issues: write
+  pull-requests: write
+  pages: write
+  id-token: write
+
 jobs:
   release:
     name: Release
     runs-on: ubuntu-latest
-    permissions:
-      contents: write
-      issues: write
-      pull-requests: write
+    outputs:
+      release: ${{ steps.release-check.outputs.release }}
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -42,3 +47,35 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: npx semantic-release
+
+      - name: Check if release was created
+        id: release-check
+        run: |
+          if git describe --exact-match --tags HEAD >/dev/null 2>&1; then
+            echo "release=true" >> $GITHUB_OUTPUT
+          else
+            echo "release=false" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Setup Pages (if release)
+        if: steps.release-check.outputs.release == 'true'
+        uses: actions/configure-pages@v4
+
+      - name: Upload artifact (if release)
+        if: steps.release-check.outputs.release == 'true'
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: './dist'
+
+  deploy:
+    name: Deploy to GitHub Pages
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    needs: release
+    if: needs.release.outputs.release == 'true'
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
