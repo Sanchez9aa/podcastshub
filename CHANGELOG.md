@@ -1,3 +1,10 @@
+## [1.5.1](https://github.com/Sanchez9aa/podcastshub/compare/v1.5.0...v1.5.1) (2025-09-29)
+
+
+### Bug Fixes
+
+* improve responsive design for mobile and tablet breakpoints ([8b86e0e](https://github.com/Sanchez9aa/podcastshub/commit/8b86e0eddb2c217ac30b37542bf4b8043794ef9c))
+
 # [1.5.0](https://github.com/Sanchez9aa/podcastshub/compare/v1.4.0...v1.5.0) (2025-09-29)
 
 
