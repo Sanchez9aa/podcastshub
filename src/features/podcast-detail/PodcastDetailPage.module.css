@@ -37,6 +37,7 @@
 @media (max-width: 1024px) {
   .layout {
     gap: var(--spacing-md);
+    flex-direction: column;
   }
 }
 
@@ -46,7 +47,6 @@
   }
 
   .layout {
-    flex-direction: column;
     gap: var(--spacing-md);
   }
 }

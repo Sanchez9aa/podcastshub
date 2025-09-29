@@ -42,18 +42,23 @@
   font-size: 16px;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 1024px) {
   .container {
     flex-direction: column;
     gap: 20px;
     padding: 10px;
+    height: auto;
+    min-height: calc(100dvh - 70px);
   }
 
   .sidebar {
     width: 100%;
+    height: auto;
   }
 
   .main {
     padding: 20px;
+    height: auto;
+    min-height: 300px;
   }
 }
