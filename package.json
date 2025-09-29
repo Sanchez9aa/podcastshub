@@ -6,7 +6,9 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
+    "build:prod": "NODE_ENV=production npm run build",
     "preview": "vite preview",
+    "preview:prod": "vite build && vite preview --base=/podcastshub/",
     "lint": "biome check src/",
     "lint:fix": "biome check --write src/",
     "format": "biome format --write src/",
@@ -14,7 +16,9 @@
     "test:ui": "vitest --ui",
     "test:coverage": "vitest --coverage",
     "semantic-release": "semantic-release",
-    "check:types": "tsc --noEmit"
+    "check:types": "tsc --noEmit",
+    "deploy:verify": "npm run lint && npm run check:types && npm run test && npm run build:prod",
+    "deploy:github-pages": "npm run deploy:verify && echo 'Ready for GitHub Pages deployment'"
   },
   "dependencies": {
     "@tanstack/query-sync-storage-persister": "^5.90.2",
@@ -33,6 +37,7 @@
     "@testing-library/jest-dom": "^6.8.0",
     "@testing-library/react": "^16.3.0",
     "@types/dompurify": "^3.0.5",
+    "@types/node": "^24.5.2",
     "@types/react": "^19.1.13",
     "@types/react-dom": "^19.1.9",
     "@vitejs/plugin-react": "^5.0.3",

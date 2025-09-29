@@ -6,7 +6,7 @@ export function useNavigationLoading() {
   const location = useLocation();
   const { setLoading } = useUI();
   const prevPathnameRef = useRef(location.pathname);
-  const timeoutRef = useRef<number | null>(null);
+  const timeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   const stopLoadingStable = useCallback(() => {
     setLoading(false);

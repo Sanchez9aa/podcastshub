@@ -14,6 +14,7 @@ Mini-aplicación SPA para escuchar podcasts musicales desarrollada siguiendo pri
 - [Testing](#-testing)
 - [Instalación y Ejecución](#-instalación-y-ejecución)
 - [Scripts Disponibles](#-scripts-disponibles)
+- [Deployment GitHub Pages](#-deployment-github-pages)
 - [Gestión de Releases](#-gestión-de-releases)
 - [Mejoras Implementadas](#-mejoras-implementadas)
 
@@ -523,6 +524,63 @@ describe('formatDuration edge cases', () => {
   });
 });
 ```
+
+## 🌐 Deployment GitHub Pages
+
+### Configuración Automática
+
+La aplicación está configurada para **deploy automático a GitHub Pages** usando semantic-release:
+
+```bash
+# Desarrollo local
+npm run dev                    # http://localhost:5173
+
+# Preview producción
+npm run preview:prod           # Build + preview con /podcastshub/
+
+# Verificación completa
+npm run deploy:verify          # Lint + tipos + tests + build
+
+# Deploy automático
+git commit -m "feat: nueva feature"  # Trigger automático
+git push origin main                 # → GitHub Pages
+```
+
+### Arquitectura de Entornos
+
+```
+┌─────────────┐    ┌─────────────────┐    ┌──────────────────┐
+│ Development │    │   Production    │    │  GitHub Pages    │
+│ localhost/  │ -> │  /podcastshub/  │ -> │ .github.io/      │
+│             │    │                 │    │  podcastshub/    │
+└─────────────┘    └─────────────────┘    └──────────────────┘
+```
+
+### Variables de Entorno
+
+- **`.env.development`**: `VITE_APP_BASE_PATH=/`
+- **`.env.production`**: `VITE_APP_BASE_PATH=/podcastshub/`
+
+### Workflow Automático
+
+1. **Push feat/fix** → Trigger GitHub Actions
+2. **Semantic Release** → Crea versión automática
+3. **Build & Test** → Verificación completa
+4. **Deploy** → Solo si hay release nuevo
+5. **GitHub Pages** → Disponible en minutos
+
+### Utilidades de Entorno
+
+```typescript
+// src/shared/utils/environment.ts
+getBasePath()      // '/' o '/podcastshub/'
+getEnvironment()   // 'development' | 'production' | 'test'
+isProduction()     // boolean
+```
+
+**Router configurado automáticamente**:
+- Desarrollo: `basename=""`
+- Producción: `basename="/podcastshub"`
 
 ## 🚀 Gestión de Releases
 

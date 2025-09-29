@@ -4,6 +4,7 @@ import { routes } from "@/router/routes";
 import { Layout } from "@/shared/components/layout/Layout/Layout";
 import { PageSkeleton } from "@/shared/components/ui/PageSkeleton/PageSkeleton";
 import { ErrorBoundary } from "@/shared/errors/ErrorBoundary";
+import { getBasePath } from "@/shared/utils/environment";
 
 const PodcastListPage = lazy(() =>
   import("@/features/podcast-list/PodcastListPage").then((m) => ({
@@ -30,8 +31,11 @@ function SuspenseWrapper({ children }: { children: React.ReactNode }) {
 }
 
 export function AppRouter() {
+  // Use centralized configuration for basename
+  const basename = getBasePath().slice(0, -1); // Remove trailing slash for BrowserRouter
+
   return (
-    <BrowserRouter>
+    <BrowserRouter basename={basename}>
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route

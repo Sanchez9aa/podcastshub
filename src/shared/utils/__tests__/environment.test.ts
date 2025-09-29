@@ -1,163 +1,107 @@
 import { describe, expect, it } from "vitest";
-import { formatDate } from "../formatDate";
-import { formatDuration } from "../formatDuration";
-import { sanitizeHtml } from "../sanitizeHtml";
+import {
+  getBasePath,
+  getEnvironment,
+  isDevelopment,
+  isProduction,
+  isTest,
+} from "../environment";
 
-/**
- * Environment agnostic tests to ensure utilities work across different platforms
- * These tests focus on behavior rather than exact output formatting
- */
-describe("Environment Agnostic Utility Tests", () => {
-  describe("formatDate cross-environment", () => {
-    it("should handle basic date formatting consistently", () => {
-      const validDates = ["2024-01-15", "2024-12-31", "2023-06-15"];
-
-      validDates.forEach((date) => {
-        const result = formatDate(date);
-
-        // Should always return a non-empty string for valid dates
-        expect(typeof result).toBe("string");
-        expect(result.length).toBeGreaterThan(0);
-
-        // Should contain the year somewhere in the result
-        expect(result).toMatch(/202[3-4]/);
-
-        // Should contain some date separators (could be /, -, or spaces)
-        expect(result).toMatch(/[\\/\-\s]/);
-      });
+describe("Environment utilities", () => {
+  describe("getBasePath", () => {
+    it("should return a valid path string", () => {
+      const path = getBasePath();
+      expect(typeof path).toBe("string");
+      expect(path.length).toBeGreaterThan(0);
+      expect(path.startsWith("/")).toBe(true);
+      expect(path.endsWith("/")).toBe(true);
     });
 
-    it("should handle invalid dates consistently", () => {
-      const invalidDates = [
-        "invalid-date",
-        "not-a-date",
-        "abc123",
-        "2024-99-99",
-      ];
-
-      invalidDates.forEach((invalidDate) => {
-        const result = formatDate(invalidDate);
-
-        // Should return a string (could be "Invalid Date", "NaN/NaN/NaN", etc.)
-        expect(typeof result).toBe("string");
-        expect(result.length).toBeGreaterThan(0);
-
-        // Should not contain valid year numbers for truly invalid dates
-        expect(result).not.toMatch(/^202[0-9]$/);
-      });
+    it("should return consistent path between calls", () => {
+      const path1 = getBasePath();
+      const path2 = getBasePath();
+      expect(path1).toBe(path2);
     });
 
-    it("should handle empty inputs consistently", () => {
-      expect(formatDate("")).toBe("");
-      expect(formatDate(null as unknown as string)).toBe("");
-      expect(formatDate(undefined as unknown as string)).toBe("");
+    it("should return either root path or podcastshub path", () => {
+      const path = getBasePath();
+      expect(path === "/" || path === "/podcastshub/").toBe(true);
     });
   });
 
-  describe("formatDuration cross-environment", () => {
-    it("should format durations consistently across environments", () => {
-      const testCases = [
-        { input: 0, expected: "00:00" },
-        { input: 30, expected: "00:30" },
-        { input: 60, expected: "01:00" },
-        { input: 3600, expected: "01:00:00" },
-        { input: 3661, expected: "01:01:01" },
-      ];
-
-      testCases.forEach(({ input, expected }) => {
-        expect(formatDuration(input)).toBe(expected);
-      });
+  describe("getEnvironment", () => {
+    it("should return a valid environment", () => {
+      const env = getEnvironment();
+      expect(["development", "production", "test"]).toContain(env);
     });
 
-    it("should handle invalid inputs consistently", () => {
-      const invalidInputs = [null, undefined, NaN];
-
-      invalidInputs.forEach((input) => {
-        expect(formatDuration(input as unknown as number)).toBe("--:--");
-      });
-    });
-
-    it("should handle edge cases consistently", () => {
-      expect(formatDuration(-1)).toBe("00:00");
-      expect(formatDuration(0.5)).toBe("00:00");
-      expect(formatDuration(59.9)).toBe("00:59");
+    it("should return consistent environment between calls", () => {
+      const env1 = getEnvironment();
+      const env2 = getEnvironment();
+      expect(env1).toBe(env2);
     });
   });
 
-  describe("sanitizeHtml cross-environment", () => {
-    it("should preserve safe HTML consistently", () => {
-      const safeHTML = "<p>Safe <strong>content</strong> here</p>";
-      const result = sanitizeHtml(safeHTML);
-
-      // Should preserve basic structure
-      expect(result).toContain("<p>");
-      expect(result).toContain("</p>");
-      expect(result).toContain("<strong>");
-      expect(result).toContain("</strong>");
-      expect(result).toContain("Safe");
-      expect(result).toContain("content");
-      expect(result).toContain("here");
+  describe("environment flags", () => {
+    it("should return boolean values", () => {
+      expect(typeof isProduction()).toBe("boolean");
+      expect(typeof isDevelopment()).toBe("boolean");
+      expect(typeof isTest()).toBe("boolean");
     });
 
-    it("should remove dangerous content consistently", () => {
-      const dangerousHTML = '<script>alert("xss")</script><p>Safe content</p>';
-      const result = sanitizeHtml(dangerousHTML);
-
-      // Should remove dangerous elements
-      expect(result).not.toContain("<script>");
-      expect(result).not.toContain("alert");
-      expect(result).not.toContain("xss");
-
-      // Should preserve safe content
-      expect(result).toContain("Safe content");
+    it("should have only one environment flag true", () => {
+      const flags = [isProduction(), isDevelopment(), isTest()];
+      const trueCount = flags.filter((flag) => flag).length;
+      expect(trueCount).toBe(1);
     });
 
-    it("should handle empty inputs consistently", () => {
-      expect(sanitizeHtml("")).toBe("");
-      expect(sanitizeHtml(null as unknown as string)).toBe("");
-      expect(sanitizeHtml(undefined as unknown as string)).toBe("");
-    });
+    it("should match getEnvironment result", () => {
+      const env = getEnvironment();
 
-    it("should handle plain text consistently", () => {
-      const plainText = "Just plain text without HTML";
-      expect(sanitizeHtml(plainText)).toBe(plainText);
-    });
-
-    it("should preserve allowed attributes", () => {
-      const htmlWithLinks =
-        '<p>Visit <a href="https://example.com">our site</a></p>';
-      const result = sanitizeHtml(htmlWithLinks);
-
-      expect(result).toContain('href="https://example.com"');
-      expect(result).toContain("our site");
+      if (env === "production") {
+        expect(isProduction()).toBe(true);
+        expect(isDevelopment()).toBe(false);
+        expect(isTest()).toBe(false);
+      } else if (env === "development") {
+        expect(isProduction()).toBe(false);
+        expect(isDevelopment()).toBe(true);
+        expect(isTest()).toBe(false);
+      } else if (env === "test") {
+        expect(isProduction()).toBe(false);
+        expect(isDevelopment()).toBe(false);
+        expect(isTest()).toBe(true);
+      }
     });
   });
 
-  describe("Integration behavior", () => {
-    it("should work together for podcast data processing", () => {
-      // Simulate real podcast data processing
-      const podcastEpisode = {
-        title: "Test Episode",
-        description:
-          '<p>This is a <strong>test</strong> episode with <a href="https://example.com">links</a>.</p>',
-        duration: 3725, // 1:02:05
-        releaseDate: "2024-01-15T10:30:00Z",
-      };
+  describe("integration behavior", () => {
+    it("should provide consistent configuration for routing", () => {
+      const basePath = getBasePath();
 
-      // Process the data
-      const sanitizedDescription = sanitizeHtml(podcastEpisode.description);
-      const formattedDuration = formatDuration(podcastEpisode.duration);
-      const formattedDate = formatDate(podcastEpisode.releaseDate);
+      // BasePath should be valid for BrowserRouter
+      expect(basePath.startsWith("/")).toBe(true);
 
-      // Verify results are reasonable
-      expect(sanitizedDescription).toContain("test");
-      expect(sanitizedDescription).toContain("episode");
-      expect(sanitizedDescription).toContain("<strong>");
+      // For router basename, we remove trailing slash
+      const routerBasename = basePath.slice(0, -1);
+      expect(routerBasename === "" || routerBasename.startsWith("/")).toBe(
+        true,
+      );
+    });
 
-      expect(formattedDuration).toBe("01:02:05");
+    it("should work for current test environment", () => {
+      // In test environment, we expect safe defaults
+      expect(isTest()).toBe(true);
+      expect(getBasePath()).toBe("/");
+      expect(getEnvironment()).toBe("test");
+    });
 
-      expect(formattedDate).toBeTruthy();
-      expect(formattedDate).toContain("2024");
+    it("should provide all utility functions", () => {
+      // Smoke test - all functions should be callable
+      expect(typeof getBasePath()).toBe("string");
+      expect(typeof getEnvironment()).toBe("string");
+      expect(typeof isProduction()).toBe("boolean");
+      expect(typeof isDevelopment()).toBe("boolean");
+      expect(typeof isTest()).toBe("boolean");
     });
   });
 });
