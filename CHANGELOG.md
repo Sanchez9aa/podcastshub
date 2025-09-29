@@ -1,3 +1,10 @@
+# [1.7.0](https://github.com/Sanchez9aa/podcastshub/compare/v1.6.0...v1.7.0) (2025-09-29)
+
+
+### Features
+
+* implement production-ready GitHub Pages deployment ([0b1564a](https://github.com/Sanchez9aa/podcastshub/commit/0b1564adacc65eb782be65591f35fadc6ff8fcad))
+
 # [1.6.0](https://github.com/Sanchez9aa/podcastshub/compare/v1.5.1...v1.6.0) (2025-09-29)
 
 
